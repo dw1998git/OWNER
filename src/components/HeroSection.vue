@@ -2,7 +2,7 @@
   <section class="hero-section">
     <img class="hero-bg" src="@/assets/hero-robotics.jpg" alt="Robotics engineering background">
     <canvas ref="heroSpotlightCanvas" id="hero-spotlight-canvas"></canvas>
-    <div ref="heroRevealLayer" id="hero-reveal-layer" :style="revealStyle"></div>
+    <div ref="heroRevealLayer" id="hero-reveal-layer"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="reveal hero-subtitle">Robotics Application Engineer</p>

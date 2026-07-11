@@ -1,4 +1,5 @@
 import { ref, onMounted, onUnmounted } from 'vue'
+import heroRevealImg from '@/assets/hero-reveal.jpg'
 
 export function useSpotlight() {
   const spotlightCanvas = ref(null)
@@ -12,6 +13,8 @@ export function useSpotlight() {
     const canvas = spotlightCanvas.value
     const layer = revealLayer.value
     if (!canvas || !layer) return
+
+    layer.style.backgroundImage = `url(${heroRevealImg})`
     const ctx = canvas.getContext('2d')
     const section = canvas.parentElement
 

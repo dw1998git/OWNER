@@ -6,7 +6,7 @@ export function useReveal() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
+          entry.target.classList.add('visible', 'revealed')
           const bars = entry.target.querySelectorAll('.skill-progress-bar')
           bars.forEach(bar => {
             const w = bar.dataset.width
