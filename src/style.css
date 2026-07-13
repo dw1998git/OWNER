@@ -594,15 +594,13 @@ body {
   .section-headline {
     font-size: clamp(2rem, 8vw, 3rem) !important;
   }
-  .section-sub {
-    font-size: var(--text-sm) !important;
-  }
   .apple-project-content {
     padding: 24px 16px 80px !important;
     margin-top: -5vh !important;
   }
   .project-text {
-    padding: 16px 0 !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
   }
   .apple-project-image-wrap img {
     object-position: center 30%;
@@ -610,93 +608,12 @@ body {
   .section-padding {
     padding-left: 16px !important;
     padding-right: 16px !important;
-    padding-top: 64px !important;
-    padding-bottom: 80px !important;
-  }
-  .section-alt {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    padding-top: 64px !important;
-    padding-bottom: 64px !important;
   }
   .nav-inner {
     padding: 0 16px !important;
   }
   .work-name {
     font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
-  }
-  .work-tagline {
-    font-size: var(--text-sm) !important;
-  }
-  .work-list {
-    gap: 12px !important;
-  }
-  .work-item {
-    font-size: var(--text-base) !important;
-    line-height: 1.7 !important;
-    padding-left: 18px !important;
-  }
-  .work-date, .edu-date {
-    font-size: var(--text-xs) !important;
-  }
-  .work-title {
-    font-size: var(--text-xl) !important;
-  }
-  .edu-school {
-    font-size: var(--text-xl) !important;
-  }
-  .edu-degree {
-    font-size: var(--text-sm) !important;
-  }
-  .edu-list {
-    gap: 10px !important;
-  }
-  .edu-item {
-    font-size: var(--text-sm) !important;
-    line-height: 1.7 !important;
-    padding-left: 18px !important;
-  }
-  .project-title {
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
-  }
-  .project-date {
-    font-size: var(--text-sm) !important;
-  }
-  .project-desc {
-    font-size: var(--text-base) !important;
-    line-height: 1.8 !important;
-    text-shadow: 0 1px 12px rgba(0,0,0,0.95) !important;
-  }
-  .role-badge {
-    font-size: var(--text-xs) !important;
-    padding: 4px 10px !important;
-  }
-  .tech-tag {
-    font-size: var(--text-xs) !important;
-    padding: 4px 10px !important;
-  }
-  .work-intro {
-    margin-bottom: 40px !important;
-  }
-  .work-body {
-    margin-top: 0 !important;
-  }
-  .section-center {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-  .skills-inner {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  .full-bleed {
-    margin-left: -16px !important;
-    margin-right: -16px !important;
-    border-radius: 12px !important;
-  }
-  .contact-inner {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
   }
 }
 
@@ -707,10 +624,5 @@ body {
   .cta-primary, .cta-secondary {
     font-size: 0.875rem !important;
     padding: 10px 20px !important;
-  }
-  .project-header {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 8px !important;
   }
 }
