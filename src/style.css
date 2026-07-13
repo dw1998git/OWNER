@@ -589,7 +589,7 @@ body {
 /* Mobile responsive */
 @media (max-width: 768px) {
   .skills-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr 1fr !important;
   }
   .section-headline {
     font-size: clamp(2rem, 8vw, 3rem) !important;
@@ -599,8 +599,7 @@ body {
     margin-top: -5vh !important;
   }
   .project-text {
-    padding: 20px !important;
-    border-radius: 12px !important;
+    padding: 16px 0 !important;
   }
   .apple-project-image-wrap img {
     object-position: center 30%;
@@ -615,14 +614,61 @@ body {
   .work-name {
     font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
   }
+  .section-alt {
+    padding: 80px 16px !important;
+  }
+  .skills-video {
+    height: 280px !important;
+  }
+  .tech-tag {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+  }
+  .project-title {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  }
+  .project-desc {
+    font-size: var(--text-base) !important;
+    line-height: 1.8 !important;
+  }
+  .project-date {
+    font-size: var(--text-base) !important;
+  }
+  .video-fade-top { height: 30px !important; }
+  .video-fade-bottom { height: 50px !important; }
+  .full-bleed {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    border-radius: 0 !important;
+  }
+  .work-list, .edu-list {
+    padding-left: 4px !important;
+  }
+  .work-item, .edu-item {
+    font-size: var(--text-base) !important;
+    padding-left: 18px !important;
+  }
 }
 
 @media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+  }
   .apple-project-image-wrap::before { height: 15vh !important; }
   .apple-project-image-wrap::after { height: 30vh !important; }
   .apple-project-section { min-height: 160vh !important; }
   .cta-primary, .cta-secondary {
     font-size: 0.875rem !important;
     padding: 10px 20px !important;
+  }
+  .skills-video {
+    height: 220px !important;
+  }
+  .project-tags {
+    gap: 6px !important;
+  }
+  .tech-tag {
+    font-size: 11px !important;
+    padding: 3px 8px !important;
   }
 }
