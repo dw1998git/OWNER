@@ -1,10 +1,12 @@
 <template>
   <section class="hero-section">
-    <spline-viewer
+    <iframe
       class="hero-spline"
-      url="https://prod.spline.design/1MIwEp5wfARNeeSa/scene.splinecode"
-      loading="lazy"
-    ></spline-viewer>
+      src="https://my.spline.design/nexbotrobotcharacterconcept-1MIwEp5wfARNeeSaHr6zmKMt/"
+      frameborder="0"
+      allow="autoplay"
+      loading="eager"
+    ></iframe>
     <div class="hero-overlay"></div>
   </section>
 </template>
@@ -28,7 +30,7 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  pointer-events: auto;
+  border: none;
 }
 .hero-overlay {
   position: absolute;
@@ -38,15 +40,15 @@
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    transparent 60%,
-    rgba(245, 245, 247, 0.8) 85%,
+    transparent 55%,
+    rgba(245, 245, 247, 0.7) 80%,
     rgba(245, 245, 247, 1) 100%
   );
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 60vh;
+    min-height: 50vh;
   }
 }
 </style>
