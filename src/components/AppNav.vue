@@ -39,8 +39,8 @@ const setActiveLink = (event, linkName) => {
     const posX = (x - centerX) / centerX
     const posY = (y - centerY) / centerY
     
-    // 应用 3D 变形效果
-    element.style.transform = `perspective(500px) rotateX(${posY * 5}deg) rotateY(${posX * 5}deg) scale3d(1.1, 1.1, 1.1)`
+    // 应用 3D 变形效果 - 增强放大效果到2倍
+    element.style.transform = `perspective(500px) rotateX(${posY * 8}deg) rotateY(${posX * 8}deg) scale3d(2, 2, 2)`
     element.style.zIndex = '10'
   }
   
@@ -104,7 +104,7 @@ const resetLink = (event) => {
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   position: relative;
   display: inline-block;
   transform-style: preserve-3d;
@@ -122,14 +122,17 @@ const resetLink = (event) => {
   border-radius: 8px;
   background: radial-gradient(
     circle at center,
-    rgba(0, 113, 227, 0.1) 0%,
-    rgba(0, 113, 227, 0.05) 40%,
-    transparent 70%
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(245, 245, 247, 0.15) 40%,
+    rgba(245, 245, 247, 0.05) 70%,
+    transparent 100%
   );
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
   transform: translateZ(-5px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-link.active::before {
@@ -139,17 +142,18 @@ const resetLink = (event) => {
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -6px;
   left: 50%;
   width: 0;
-  height: 1px;
-  background: var(--color-accent);
-  transition: all 0.3s ease;
+  height: 2px;
+  background: linear-gradient(90deg, #f5f5f7, #0071e3, #f5f5f7);
+  transition: all 0.4s ease;
   transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 .nav-link:hover::after {
-  width: 80%;
+  width: 100%;
 }
 
 .nav-item {
@@ -157,8 +161,9 @@ const resetLink = (event) => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   backface-visibility: hidden;
   transform-origin: center;
+  overflow: visible; /* 允许悬停时的内容溢出 */
 }
 </style>
