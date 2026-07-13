@@ -1,8 +1,12 @@
 <template>
   <section class="hero-section">
-    <img class="hero-bg" src="@/assets/hero-robotics.jpg" alt="Robotics engineering background">
-    <canvas ref="heroSpotlightCanvas" id="hero-spotlight-canvas"></canvas>
-    <div ref="heroRevealLayer" id="hero-reveal-layer"></div>
+    <iframe
+      class="hero-spline"
+      src="https://my.spline.design/nexbotrobotcharacterconcept-1MIwEp5wfARNeeSaHr6zmKMt/"
+      frameborder="0"
+      loading="lazy"
+      allow="autoplay"
+    ></iframe>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="reveal hero-subtitle">Robotics Application Engineer</p>
@@ -17,9 +21,6 @@
 </template>
 
 <script setup>
-import { useSpotlight } from '../composables/useSpotlight.js'
-
-const { spotlightCanvas: heroSpotlightCanvas, revealLayer: heroRevealLayer } = useSpotlight()
 </script>
 
 <style scoped>
@@ -32,13 +33,13 @@ const { spotlightCanvas: heroSpotlightCanvas, revealLayer: heroRevealLayer } = u
   justify-content: center;
   overflow: hidden;
 }
-.hero-bg {
+.hero-spline {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: 0;
+  pointer-events: none;
 }
 .hero-overlay {
   position: absolute;
@@ -47,7 +48,7 @@ const { spotlightCanvas: heroSpotlightCanvas, revealLayer: heroRevealLayer } = u
 }
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
   padding: 0 32px;
   max-width: 980px;
