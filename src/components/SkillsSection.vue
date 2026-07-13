@@ -88,6 +88,7 @@ import PixelCard from '../components/PixelCard.vue'
 .pixel-card-wrapper {
   width: 100%;
   height: 100%;
+  min-height: 300px; /* 确保最小高度 */
 }
 
 .skill-card-content {
@@ -100,6 +101,8 @@ import PixelCard from '../components/PixelCard.vue'
   padding: 20px;
   z-index: 10;
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 .skill-name {
@@ -115,6 +118,9 @@ import PixelCard from '../components/PixelCard.vue'
   margin-top: 10px;
   line-height: 1.7;
   z-index: 11;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
 }
 .skill-level {
   font-size: var(--text-base);
@@ -123,5 +129,14 @@ import PixelCard from '../components/PixelCard.vue'
   font-family: var(--font-mono);
   font-weight: var(--font-semibold);
   z-index: 11;
+}
+
+/* 调整 PixelCard 的样式以完全填充 */
+.pixel-card {
+  height: 100%;
+  width: 100%;
+  min-height: 300px;
+  aspect-ratio: unset; /* 取消固定宽高比 */
+  border-radius: 20px; /* 与网格圆角保持一致 */
 }
 </style>

@@ -293,7 +293,7 @@ body {
 /* Section headline style */
 .section-headline {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-size: clamp(2rem, 4vw, 3rem);  /* 统一标题大小 */
   font-weight: var(--font-bold);
   line-height: 1.08;
   letter-spacing: -0.02em;
