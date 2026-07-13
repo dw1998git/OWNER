@@ -6,8 +6,8 @@
         <p class="edu-date">2018 - 2022</p>
         <h3 class="edu-school">三江学院</h3>
         <p class="edu-degree">本科 | 机器人竞赛一等奖</p>
-        <ul class="edu-list">
-          <li v-for="(item, i) in eduItems" :key="i" class="edu-item">
+        <ul class="edu-list stagger-group">
+          <li v-for="(item, i) in eduItems" :key="i" class="edu-item stagger-item">
             <span class="edu-dot"></span>
             {{ item }}
           </li>
@@ -41,40 +41,42 @@ const eduItems = [
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: var(--color-accent);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
 }
 .edu-school {
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
   color: var(--color-text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .edu-degree {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .edu-list {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 .edu-item {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
-  line-height: 1.7;
-  padding-left: 20px;
+  line-height: 1.8;
+  padding-left: 22px;
   position: relative;
 }
 .edu-dot {
   position: absolute;
   left: 0;
-  top: 10px;
-  width: 6px;
-  height: 6px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--color-teal);
+  box-shadow: 0 0 8px rgba(48, 213, 200, 0.4);
 }
 </style>

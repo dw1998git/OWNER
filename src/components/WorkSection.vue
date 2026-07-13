@@ -7,16 +7,16 @@
         <p class="work-tagline">4年自动化与机器人系统集成经验</p>
       </div>
       <div class="reveal reveal-delay-1 work-body">
-        <h3 class="section-headline" style="text-align: left; font-size: clamp(1.5rem, 3vw, 2.25rem);">工作经历。</h3>
-        <div style="margin-top: 32px;">
+        <h3 class="section-headline" style="text-align: left; font-size: clamp(1.75rem, 3.5vw, 2.75rem);">工作经历。</h3>
+        <div style="margin-top: 36px;">
           <p class="work-date">2022.07 - 至今</p>
           <h3 class="work-title">自动化应用工程师</h3>
-          <ul class="work-list">
-            <li v-for="(item, i) in workItems" :key="i" class="work-item">
-              <span class="work-dot"></span>
-              {{ item }}
-            </li>
-          </ul>
+          <ul class="work-list stagger-group">
+          <li v-for="(item, i) in workItems" :key="i" class="work-item stagger-item">
+            <span class="work-dot"></span>
+            {{ item }}
+          </li>
+        </ul>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@ const workItems = [
   padding: 96px 32px 128px;
 }
 .section-center {
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
 }
 .work-intro {
@@ -49,22 +49,27 @@ const workItems = [
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   color: var(--color-accent);
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
 }
 .work-name {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-size: clamp(3.5rem, 10vw, 5.5rem);
   font-weight: var(--font-bold);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
   color: var(--color-text-primary);
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .work-tagline {
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: var(--font-light);
   color: var(--color-text-secondary);
-  margin-top: 16px;
+  margin-top: 20px;
+  letter-spacing: 0.02em;
 }
 .work-body {
   margin-top: 0;
@@ -73,35 +78,37 @@ const workItems = [
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: var(--color-accent);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
 }
 .work-title {
   font-size: var(--text-2xl);
   font-weight: var(--font-semibold);
   color: var(--color-text-primary);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .work-list {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 .work-item {
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   color: var(--color-text-secondary);
-  line-height: 1.7;
-  padding-left: 20px;
+  line-height: 1.8;
+  padding-left: 22px;
   position: relative;
 }
 .work-dot {
   position: absolute;
   left: 0;
-  top: 10px;
-  width: 6px;
-  height: 6px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--color-teal);
+  box-shadow: 0 0 8px rgba(48, 213, 200, 0.4);
 }
 </style>

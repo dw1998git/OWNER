@@ -1,7 +1,15 @@
 <template>
-  <div class="apple-project-section" :data-project="project.id">
+  <div
+    class="apple-project-section"
+    :data-project="project.id"
+  >
     <div class="apple-project-image-wrap">
-      <img :src="project.image" :alt="project.title" loading="lazy" decoding="async">
+      <img
+        :src="project.image"
+        :alt="project.title"
+        loading="lazy"
+        decoding="async"
+      >
     </div>
     <div class="apple-project-content">
       <div class="project-text">
@@ -16,8 +24,13 @@
           class="project-desc"
           v-html="desc"
         ></p>
-        <div class="project-tags">
-          <span v-for="tag in project.tags" :key="tag" class="tech-tag">{{ tag }}</span>
+        <div class="project-tags stagger-group">
+          <span
+            v-for="(tag, i) in project.tags"
+            :key="tag"
+            class="tech-tag tag-pop stagger-item"
+            :style="{ transitionDelay: i * 80 + 'ms' }"
+          >{{ tag }}</span>
         </div>
       </div>
     </div>
@@ -37,34 +50,37 @@ defineProps({
 .project-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 .project-title {
-  font-size: var(--text-3xl);
-  font-weight: var(--font-semibold);
-  color: var(--color-text-primary);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--font-bold);
+  color: #ffffff;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.85);
+  letter-spacing: -0.01em;
 }
 .project-date {
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 16px;
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 24px;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
 .project-desc {
-  font-size: var(--text-base);
-  color: rgba(255,255,255,0.95);
-  line-height: 1.8;
-  text-shadow: 0 1px 16px rgba(0,0,0,0.9);
-  margin-bottom: 16px;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  color: #ffffff;
+  line-height: 2;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.5);
+  margin-bottom: 24px;
 }
 .project-desc:last-of-type {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 .project-tags {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 </style>
