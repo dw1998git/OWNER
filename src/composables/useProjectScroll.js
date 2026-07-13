@@ -44,23 +44,24 @@ export function useProjectScroll() {
           continue
         }
 
-        // === TIMELINE (slower transitions) ===
+        // === TIMELINE ===
         // 0%  - 15%:  hidden
-        // 15% - 55%:  image clip reveal (slower linear - 40% of scroll)
-        // 55% - 75%:  image fully visible, blur ramps up slowly
-        // 70% - 80%:  text fades in (during blur, so text appears ON blurred bg)
-        // 75% - 85%:  image stays blurred, text is sharp/readable in center
-        // 85% - 95%:  text fades out
+        // 15% - 55%:  image clip reveal (slower linear)
+        // 55% - 100%: image fully visible
+        // 65% - 80%:  text fades in (during blur, so text appears ON blurred bg)
+        // 65% - 85%:  image stays blurred, text is sharp/readable in center
+        // 80% - 95%:  text fades out
         // 90% - 100%: image blur decreases (fades to white)
 
         const direction = i % 2 === 0
 
-        // Clip reveal - slowed down from 45% to 55% (more gradual)
+        // Clip reveal - slowed down from 45% to 55% of scroll range
         let clipPercent
         if (progress < 0.15) {
           clipPercent = 100
         } else if (progress < 0.55) {
-          const t = (progress - 0.15) / 0.40  // Slower transition over 40% range
+          // Slower reveal: 40% of scroll range instead of 35%
+          const t = (progress - 0.15) / 0.40
           clipPercent = lerp(100, 0, t)
         } else {
           clipPercent = 0
@@ -73,12 +74,12 @@ export function useProjectScroll() {
           clipValue = `inset(0 0 0 ${clipPercent.toFixed(2)}%)`
         }
 
-        // Blur: ramp up more slowly after clip
+        // Blur: ramp up after clip, then ramp down at end
         let blur, scale
-        if (progress < 0.55) {
+        if (progress < 0.50) {
           blur = 0; scale = 1
-        } else if (progress < 0.75) {
-          const t = (progress - 0.55) / 0.20  // Slower blur ramp over 20% range
+        } else if (progress < 0.70) {
+          const t = (progress - 0.50) / 0.20
           blur = lerp(0, maxBlur, t)
           scale = lerp(1, maxScale, t)
         } else if (progress < 0.9) {
@@ -95,8 +96,8 @@ export function useProjectScroll() {
 
         // Text: fade in on blurred background, sharp in center, fade out
         if (content) {
-          const fadeIn = clamp((progress - 0.70) / 0.1, 0, 1)  // Delayed to 70%
-          const fadeOut = clamp((progress - 0.85) / 0.1, 0, 1)  // Starts at 85%
+          const fadeIn = clamp((progress - 0.65) / 0.15, 0, 1)
+          const fadeOut = clamp((progress - 0.8) / 0.15, 0, 1)
           const opacity = Math.max(0, Math.min(fadeIn, 1 - fadeOut))
           const exitDir = i % 2 === 0 ? -1 : 1
           content.style.opacity = String(opacity)

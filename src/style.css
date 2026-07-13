@@ -290,10 +290,10 @@ body {
   transform: translateY(0);
 }
 
-/* Section headline style */
+/* Section headline style - unified sizing */
 .section-headline {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);  /* 统一标题大小 */
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem); /* Slightly smaller max size for consistency */
   font-weight: var(--font-bold);
   line-height: 1.08;
   letter-spacing: -0.02em;
