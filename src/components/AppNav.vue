@@ -3,62 +3,67 @@
     <div class="nav-inner">
       <a href="#" class="nav-logo">WANG WEI</a>
       <div class="nav-links">
-        <a href="#experience" class="nav-link nav-item">经历</a>
-        <a href="#skills" class="nav-link nav-item">技能</a>
-        <a href="#education" class="nav-link nav-item">教育</a>
-        <a href="#projects" class="nav-link nav-item">项目</a>
-        <a href="#contact" class="nav-link nav-item">联系</a>
+        <a href="#experience" class="nav-link nav-item" @mouseenter="setActiveLink($event, 'experience')" @mouseleave="resetLink($event)">经历</a>
+        <a href="#skills" class="nav-link nav-item" @mouseenter="setActiveLink($event, 'skills')" @mouseleave="resetLink($event)">技能</a>
+        <a href="#education" class="nav-link nav-item" @mouseenter="setActiveLink($event, 'education')" @mouseleave="resetLink($event)">教育</a>
+        <a href="#projects" class="nav-link nav-item" @mouseenter="setActiveLink($event, 'projects')" @mouseleave="resetLink($event)">项目</a>
+        <a href="#contact" class="nav-link nav-item" @mouseenter="setActiveLink($event, 'contact')" @mouseleave="resetLink($event)">联系</a>
       </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 
-// 为导航项添加悬停放大动效
-const initNavAnimations = () => {
-  const navItems = document.querySelectorAll('.nav-item')
+// 跟踪当前活动的链接
+const activeLink = ref(null)
+
+// 设置活动链接的 3D 效果
+const setActiveLink = (event, linkName) => {
+  const element = event.currentTarget
+  activeLink.value = linkName
   
-  navItems.forEach(item => {
-    let animationId = null
+  // 添加 3D 凸镜效果
+  element.classList.add('active')
+  
+  // 添加鼠标移动事件监听器
+  const handleMouseMove = (e) => {
+    const rect = element.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
     
-    const handleMouseEnter = () => {
-      // 悬停时放大效果
-      item.style.transform = 'scale(1.15)'
-      item.style.transition = 'transform 0.2s ease, color 0.2s ease'
-      item.style.color = 'var(--color-accent)' // 改变颜色为强调色
-    }
+    // 计算相对于元素中心的位置
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+    const posX = (x - centerX) / centerX
+    const posY = (y - centerY) / centerY
     
-    const handleMouseLeave = () => {
-      // 离开时恢复原状
-      item.style.transform = 'scale(1)'
-      item.style.color = 'var(--color-text-primary)' // 恢复原色
-    }
-    
-    item.addEventListener('mouseenter', handleMouseEnter)
-    item.addEventListener('mouseleave', handleMouseLeave)
-    
-    // 保存事件处理器引用以便后续清理
-    item._navHandlers = { handleMouseEnter, handleMouseLeave }
-  })
+    // 应用 3D 变形效果
+    element.style.transform = `perspective(500px) rotateX(${posY * 5}deg) rotateY(${posX * 5}deg) scale3d(1.1, 1.1, 1.1)`
+    element.style.zIndex = '10'
+  }
+  
+  // 添加鼠标移出事件监听器
+  const handleMouseLeave = () => {
+    element.classList.remove('active')
+    element.style.transform = 'perspective(500px) rotateX(0) rotateY(0) scale3d(1, 1, 1)'
+    element.style.zIndex = '1'
+    element.removeEventListener('mousemove', handleMouseMove)
+    element.removeEventListener('mouseleave', handleMouseLeave)
+  }
+  
+  element.addEventListener('mousemove', handleMouseMove)
+  element.addEventListener('mouseleave', handleMouseLeave)
 }
 
-onMounted(() => {
-  // 延迟执行以确保DOM已渲染
-  setTimeout(initNavAnimations, 100)
-})
-
-onUnmounted(() => {
-  // 清理事件监听器
-  const navItems = document.querySelectorAll('.nav-item')
-  navItems.forEach(item => {
-    if (item._navHandlers) {
-      item.removeEventListener('mouseenter', item._navHandlers.handleMouseEnter)
-      item.removeEventListener('mouseleave', item._navHandlers.handleMouseLeave)
-    }
-  })
-})
+// 重置链接样式
+const resetLink = (event) => {
+  const element = event.currentTarget
+  element.classList.remove('active')
+  element.style.transform = 'perspective(500px) rotateX(0) rotateY(0) scale3d(1, 1, 1)'
+  element.style.zIndex = '1'
+}
 </script>
 
 <style scoped>
@@ -97,10 +102,38 @@ onUnmounted(() => {
   font-weight: var(--font-medium);
   color: var(--color-text-primary);
   text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
   transition: all 0.2s ease;
   position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  transform: perspective(500px);
+  z-index: 1;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 113, 227, 0.1) 0%,
+    rgba(0, 113, 227, 0.05) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  transform: translateZ(-5px);
+}
+
+.nav-link.active::before {
+  opacity: 1;
 }
 
 .nav-link::after {
@@ -124,6 +157,8 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: all 0.2s ease;
+  backface-visibility: hidden;
+  transform-origin: center;
 }
 </style>
