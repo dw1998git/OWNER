@@ -2,13 +2,19 @@
   <AuroraBackground />
   <AppNav />
   <main>
-    <HeroSection />
+    <div id="hero">
+      <HeroSection />
+    </div>
     <HeroCtaBar />
     <WorkSection />
-    <SkillsSection />
+    <SkillsSection id="skills" />
     <EducationSection />
-    <ProjectsSection />
-    <ContactSection />
+    <div id="projects">
+      <ProjectsSection />
+    </div>
+    <div id="contact">
+      <ContactSection />
+    </div>
   </main>
   <AppFooter />
 </template>
