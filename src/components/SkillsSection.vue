@@ -3,33 +3,37 @@
     <div class="skills-inner">
       <h2 class="section-headline reveal float-in">个人技能</h2>
       <p class="section-sub reveal reveal-delay-1">4年自动化领域机器人集成经验，掌握机器人、视觉、电气、上位机等技术能力</p>
-      <div class="skills-content-wrapper">
-        <div class="full-bleed video-wrap reveal reveal-delay-2">
-          <video
-            class="skills-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            src="@/assets/show.mp4"
-          ></video>
-          <div class="video-fade-top"></div>
-          <div class="video-fade-bottom"></div>
+      <div class="skills-content-area">
+        <div class="video-section">
+          <div class="full-bleed video-wrap reveal reveal-delay-2">
+            <video
+              class="skills-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              src="@/assets/show.mp4"
+            ></video>
+            <div class="video-fade-top"></div>
+            <div class="video-fade-bottom"></div>
+          </div>
         </div>
-        <div class="skills-grid">
-          <div
-            v-for="(skill, index) in skills"
-            :key="skill.name"
-            class="skill-card"
-            :style="{ transitionDelay: index * 100 + 'ms' }"
-          >
-            <PixelCard variant="blue">
-              <div class="skill-content">
-                <h4 class="skill-name">{{ skill.name }}</h4>
-                <p class="skill-desc">{{ skill.desc }}</p>
-                <p class="skill-level">{{ skill.level }}%</p>
-              </div>
-            </PixelCard>
+        <div class="cards-section">
+          <div class="skills-grid">
+            <div
+              v-for="(skill, index) in skills"
+              :key="skill.name"
+              class="skill-card"
+              :style="{ transitionDelay: index * 100 + 'ms' }"
+            >
+              <PixelCard variant="blue">
+                <div class="skill-content">
+                  <h4 class="skill-name">{{ skill.name }}</h4>
+                  <p class="skill-desc">{{ skill.desc }}</p>
+                  <p class="skill-level">{{ skill.level }}%</p>
+                </div>
+              </PixelCard>
+            </div>
           </div>
         </div>
       </div>
@@ -48,14 +52,22 @@ import PixelCard from './PixelCard.vue'
   background: var(--color-bg-section-alt);
 }
 .skills-inner {
-  max-width: 980px;
+  max-width: 1200px; /* 增加最大宽度以容納兩部分 */
   margin: 0 auto;
 }
-.skills-content-wrapper {
+.skills-content-area {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 48px;
+  margin-top: 48px;
+}
+.video-section {
+  width: 100%;
+}
+.cards-section {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* 右側對齊 */
 }
 .video-wrap {
   width: 100%;
@@ -91,7 +103,8 @@ import PixelCard from './PixelCard.vue'
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  width: 100%;
+  width: fit-content; /* 讓網格只佔用必要的寬度 */
+  max-width: 100%; /* 但不超過容器 */
 }
 .skill-card {
   /* 移除原来的 highlight-card 样式 */
