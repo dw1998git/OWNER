@@ -355,6 +355,7 @@ body {
   object-fit: cover;
   object-position: center;
   transition: filter 0.1s ease, transform 0.1s ease;
+  will-change: filter, transform;
 }
 /* Bottom gradient fade to page background */
 .apple-project-image-wrap::after {
@@ -380,9 +381,11 @@ body {
   pointer-events: none;
   z-index: 1;
 }
-/* Left/right side fades - applied via box-shadow on a wrapper */
-.apple-project-image-wrap img {
-  box-shadow: inset 80px 0 60px -40px rgba(245,245,247,0.7), inset -80px 0 60px -40px rgba(245,245,247,0.7);
+/* Left/right side fades - desktop only */
+@media (min-width: 769px) {
+  .apple-project-image-wrap img {
+    box-shadow: inset 80px 0 60px -40px rgba(245,245,247,0.7), inset -80px 0 60px -40px rgba(245,245,247,0.7);
+  }
 }
 .apple-project-content {
   position: relative;
