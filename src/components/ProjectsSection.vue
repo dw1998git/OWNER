@@ -18,10 +18,11 @@ useProjectScroll()
 
 <style scoped>
 .section-padding {
-  padding: 128px 32px;
+  padding: 96px 32px 0;
 }
 .projects-header {
   max-width: 980px;
   margin: 0 auto;
+  padding-bottom: 64px;
 }
 </style>
