@@ -3,32 +3,34 @@
     <div class="skills-inner">
       <h2 class="section-headline reveal float-in">个人技能</h2>
       <p class="section-sub reveal reveal-delay-1">4年自动化领域机器人集成经验，掌握机器人、视觉、电气、上位机等技术能力</p>
-      <div class="full-bleed video-wrap reveal reveal-delay-2">
-        <video
-          class="skills-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          src="@/assets/show.mp4"
-        ></video>
-        <div class="video-fade-top"></div>
-        <div class="video-fade-bottom"></div>
-      </div>
-      <div class="skills-grid">
-        <div
-          v-for="(skill, index) in skills"
-          :key="skill.name"
-          class="highlight-card skill-card"
-          :style="{ transitionDelay: index * 100 + 'ms' }"
-        >
-          <PixelCard variant="blue">
-            <div class="skill-content">
-              <h4 class="skill-name">{{ skill.name }}</h4>
-              <p class="skill-desc">{{ skill.desc }}</p>
-              <p class="skill-level">{{ skill.level }}%</p>
-            </div>
-          </PixelCard>
+      <div class="skills-content">
+        <div class="video-wrap reveal reveal-delay-2">
+          <video
+            class="skills-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            src="@/assets/show.mp4"
+          ></video>
+          <div class="video-fade-top"></div>
+          <div class="video-fade-bottom"></div>
+        </div>
+        <div class="skills-grid">
+          <div
+            v-for="(skill, index) in skills"
+            :key="skill.name"
+            class="skill-card-no-bg"
+            :style="{ transitionDelay: index * 100 + 'ms' }"
+          >
+            <PixelCard variant="blue">
+              <div class="skill-content">
+                <h4 class="skill-name">{{ skill.name }}</h4>
+                <p class="skill-desc">{{ skill.desc }}</p>
+                <p class="skill-level">{{ skill.level }}%</p>
+              </div>
+            </PixelCard>
+          </div>
         </div>
       </div>
     </div>
@@ -46,13 +48,23 @@ import PixelCard from './PixelCard.vue'
   background: var(--color-bg-section-alt);
 }
 .skills-inner {
-  max-width: 980px;
+  max-width: 1200px;
   margin: 0 auto;
 }
+.skills-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 48px;
+}
 .video-wrap {
+  flex: 1;
+  min-width: 300px;
   position: relative;
   overflow: hidden;
   border-radius: 20px;
+  flex-shrink: 0;
+  width: 600px;
 }
 .skills-video {
   width: 100%;
@@ -79,10 +91,18 @@ import PixelCard from './PixelCard.vue'
   pointer-events: none;
 }
 .skills-grid {
+  flex: 1;
+  min-width: 300px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin-top: 48px;
+}
+.skill-card-no-bg {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 .skill-content {
   position: absolute;
