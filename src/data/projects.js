@@ -1,10 +1,10 @@
 import projChargingRobotUrl from '@/assets/proj-charging-robot.jpg?url'
 import projDualArmUrl from '@/assets/proj-dual-arm.jpg?url'
 import projCoffeeRobotUrl from '@/assets/proj-coffee-robot.jpg?url'
-import projRailGrindingUrl from '@/assets/proj-rail-grinding.png?url'
+import projRailGrindingUrl from '@/assets/proj-rail-grinding.jpg?url'
 import projGarageChargingUrl from '@/assets/proj-garage-charging.png?url'
 import projPalletizingUrl from '@/assets/proj-palletizing.png?url'
-import projWaterMeterUrl from '@/assets/proj-water-meter.png?url'
+import projWaterMeter from '@/assets/proj-water-meter.jpg?url'
 import projWeldingUrl from '@/assets/proj-welding.png?url'
 import projMagnaUrl from '@/assets/proj-magna.jpg?url'
 
@@ -86,7 +86,7 @@ export const projects = [
     title: '厦门市政水表自动校表系统',
     role: '项目负责人',
     date: '2022.11 - 2023.02',
-    image: projWaterMeterUrl,
+    image: projWaterMeter,
     descriptions: [
       '设计机械臂+传送带协同的自动上下料系统，实现水表全流程无人化校准。基于PLC逻辑控制与传感器信号采集，完成设备间速度同步与动作时序协调。',
       '集成MES系统接口，实现生产数据自动上传与生产状态实时监控。应用光电/限位传感器实现碰撞防护，系统稳定运行节拍达120件/小时。'

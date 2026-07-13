@@ -453,3 +453,44 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .aurora-canvas { display: none; }
 }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .section-headline {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+  .apple-project-content {
+    padding: 24px 16px 80px !important;
+    margin-top: -5vh !important;
+  }
+  .project-text {
+    padding: 20px !important;
+    border-radius: 12px !important;
+  }
+  .apple-project-image-wrap img {
+    object-position: center 30%;
+  }
+  .section-padding {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .nav-inner {
+    padding: 0 16px !important;
+  }
+  .work-name {
+    font-size: clamp(2.5rem, 10vw, 3.5rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .apple-project-image-wrap::before { height: 15vh !important; }
+  .apple-project-image-wrap::after { height: 30vh !important; }
+  .apple-project-section { min-height: 160vh !important; }
+  .cta-primary, .cta-secondary {
+    font-size: 0.875rem !important;
+    padding: 10px 20px !important;
+  }
+}

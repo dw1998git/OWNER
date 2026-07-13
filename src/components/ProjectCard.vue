@@ -1,7 +1,7 @@
 <template>
   <div class="apple-project-section" :data-project="project.id">
     <div class="apple-project-image-wrap">
-      <img :src="project.image" :alt="project.title">
+      <img :src="project.image" :alt="project.title" loading="lazy" decoding="async">
     </div>
     <div class="apple-project-content">
       <div class="project-text">
