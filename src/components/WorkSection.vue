@@ -7,7 +7,7 @@
         <p class="work-tagline">4年自动化与机器人系统集成经验</p>
       </div>
       <div class="reveal reveal-delay-1 work-body">
-        <h3 class="section-headline" style="text-align: left;">工作经历。</h3>
+        <h3 class="section-headline" style="text-align: left; font-size: clamp(1.75rem, 3.5vw, 2.75rem);">工作经历。</h3>
         <div style="margin-top: 36px;">
           <p class="work-date">2022.07 - 至今</p>
           <h3 class="work-title">自动化应用工程师</h3>
