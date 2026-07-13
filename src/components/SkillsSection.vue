@@ -16,16 +16,19 @@
         <div class="video-fade-bottom"></div>
       </div>
       <div class="skills-grid">
-        <div
+        <PixelCard 
           v-for="(skill, index) in skills"
           :key="skill.name"
-          class="highlight-card skill-card tilt-card"
+          :variant="'default'"
+          class="pixel-card-wrapper"
           :style="{ transitionDelay: index * 100 + 'ms' }"
         >
-          <h4 class="skill-name">{{ skill.name }}</h4>
-          <p class="skill-desc">{{ skill.desc }}</p>
-          <p class="skill-level">{{ skill.level }}%</p>
-        </div>
+          <div class="skill-card-content">
+            <h4 class="skill-name">{{ skill.name }}</h4>
+            <p class="skill-desc">{{ skill.desc }}</p>
+            <p class="skill-level">{{ skill.level }}%</p>
+          </div>
+        </PixelCard>
       </div>
     </div>
   </section>
@@ -33,6 +36,7 @@
 
 <script setup>
 import { skills } from '../data/skills.js'
+import PixelCard from '../components/PixelCard.vue'
 </script>
 
 <style scoped>
@@ -79,16 +83,38 @@ import { skills } from '../data/skills.js'
   gap: 20px;
   margin-top: 48px;
 }
+
+/* PixelCard wrapper styles */
+.pixel-card-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.skill-card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+  text-align: center;
+}
+
 .skill-name {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
   color: var(--color-text-primary);
+  margin-bottom: 10px;
+  z-index: 11;
 }
 .skill-desc {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   margin-top: 10px;
   line-height: 1.7;
+  z-index: 11;
 }
 .skill-level {
   font-size: var(--text-base);
@@ -96,5 +122,6 @@ import { skills } from '../data/skills.js'
   margin-top: 10px;
   font-family: var(--font-mono);
   font-weight: var(--font-semibold);
+  z-index: 11;
 }
 </style>
