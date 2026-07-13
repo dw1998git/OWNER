@@ -1,16 +1,23 @@
 <template>
   <section id="experience" class="section-padding">
     <div class="section-center">
-      <h2 class="section-headline reveal">工作经历。</h2>
+      <div class="reveal work-intro">
+        <p class="work-subtitle">Robotics Application Engineer</p>
+        <h2 class="work-name">王 伟</h2>
+        <p class="work-tagline">4年自动化与机器人系统集成经验</p>
+      </div>
       <div class="reveal reveal-delay-1 work-body">
-        <p class="work-date">2022.07 - 至今</p>
-        <h3 class="work-title">自动化应用工程师</h3>
-        <ul class="work-list">
-          <li v-for="(item, i) in workItems" :key="i" class="work-item">
-            <span class="work-dot"></span>
-            {{ item }}
-          </li>
-        </ul>
+        <h3 class="section-headline" style="text-align: left; font-size: clamp(1.5rem, 3vw, 2.25rem);">工作经历。</h3>
+        <div style="margin-top: 32px;">
+          <p class="work-date">2022.07 - 至今</p>
+          <h3 class="work-title">自动化应用工程师</h3>
+          <ul class="work-list">
+            <li v-for="(item, i) in workItems" :key="i" class="work-item">
+              <span class="work-dot"></span>
+              {{ item }}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -27,14 +34,40 @@ const workItems = [
 
 <style scoped>
 .section-padding {
-  padding: 128px 32px;
+  padding: 96px 32px 128px;
 }
 .section-center {
   max-width: 680px;
   margin: 0 auto;
 }
+.work-intro {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.work-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.work-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: var(--font-bold);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+.work-tagline {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-weight: var(--font-light);
+  color: var(--color-text-secondary);
+  margin-top: 16px;
+}
 .work-body {
-  margin-top: 48px;
+  margin-top: 0;
 }
 .work-date {
   font-family: var(--font-mono);

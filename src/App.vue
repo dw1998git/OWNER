@@ -3,6 +3,7 @@
   <AppNav />
   <main>
     <HeroSection />
+    <HeroCtaBar />
     <WorkSection />
     <SkillsSection />
     <EducationSection />
@@ -16,6 +17,7 @@
 import AuroraBackground from './components/AuroraBackground.vue'
 import AppNav from './components/AppNav.vue'
 import HeroSection from './components/HeroSection.vue'
+import HeroCtaBar from './components/HeroCtaBar.vue'
 import WorkSection from './components/WorkSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import EducationSection from './components/EducationSection.vue'
