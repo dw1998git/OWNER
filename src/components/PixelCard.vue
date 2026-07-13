@@ -19,30 +19,30 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 const VARIANTS = {
   default: {
     activeColor: null,
-    gap: 5,
-    speed: 35,
-    colors: '#f8fafc,#f1f5f9,#cbd5e1',
+    gap: 8,  // Increased gap for less density
+    speed: 45, // Slower speed for smoother animation
+    colors: '#f8fafc,#f1f5f9,#e2e8f0',
     noFocus: false
   },
   blue: {
-    activeColor: '#e0f2fe',
-    gap: 10,
-    speed: 25,
-    colors: '#e0f2fe,#7dd3fc,#0ea5e9',
+    activeColor: '#dbeafe',
+    gap: 12, // Larger gap for less density
+    speed: 35, // Balanced speed
+    colors: '#dbeafe,#93c5fd,#3b82f6',
     noFocus: false
   },
   yellow: {
-    activeColor: '#fef08a',
-    gap: 3,
-    speed: 20,
-    colors: '#fef08a,#fde047,#eab308',
+    activeColor: '#fef9c3',
+    gap: 10,
+    speed: 30,
+    colors: '#fef9c3,#fcd34d,#f59e0b',
     noFocus: false
   },
   pink: {
-    activeColor: '#fecdd3',
-    gap: 6,
-    speed: 80,
-    colors: '#fecdd3,#fda4af,#e11d48',
+    activeColor: '#fce7f3',
+    gap: 14, // Larger gap for less density
+    speed: 60,
+    colors: '#fce7f3,#f9a8d4,#ec4899',
     noFocus: true
   }
 }
@@ -56,15 +56,15 @@ class Pixel {
     this.x = x
     this.y = y
     this.color = color
-    this.speed = this.getRandomValue(0.1, 0.9) * speed
+    this.speed = this.getRandomValue(0.05, 0.5) * speed * 0.1 // Reduced speed impact
     this.size = 0
-    this.sizeStep = Math.random() * 0.4
-    this.minSize = 0.5
-    this.maxSizeInteger = 2
+    this.sizeStep = Math.random() * 0.2 + 0.1 // Reduced size step for smoother animation
+    this.minSize = 0.3
+    this.maxSizeInteger = 1.5
     this.maxSize = this.getRandomValue(this.minSize, this.maxSizeInteger)
     this.delay = delay
     this.counter = 0
-    this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01
+    this.counterStep = Math.random() * 2 + (this.width + this.height) * 0.005 // Reduced counter step
     this.isIdle = false
     this.isReverse = false
     this.isShimmer = false
@@ -104,7 +104,7 @@ class Pixel {
       this.isIdle = true
       return
     } else {
-      this.size -= 0.1
+      this.size -= 0.08 // Slower disappearance
     }
     this.draw()
   }
@@ -116,9 +116,9 @@ class Pixel {
       this.isReverse = false
     }
     if (this.isReverse) {
-      this.size -= this.speed
+      this.size -= this.speed * 0.02 // Slower shimmer
     } else {
-      this.size += this.speed
+      this.size += this.speed * 0.02
     }
   }
 }
@@ -127,7 +127,7 @@ class Pixel {
 const getEffectiveSpeed = (value, reducedMotion) => {
   const min = 0
   const max = 100
-  const throttle = 0.001
+  const throttle = 0.0005 // Reduced throttle for smoother animation
   const parsed = parseInt(value, 10)
 
   if (parsed <= min || reducedMotion) {
@@ -204,7 +204,7 @@ const initPixels = () => {
       const dx = x - width / 2
       const dy = y - height / 2
       const distance = Math.sqrt(dx * dx + dy * dy)
-      const delay = distance
+      const delay = distance * 0.3 // Reduced delay factor
 
       pxs.push(new Pixel(canvasRef.value, ctx, x, y, color, getEffectiveSpeed(finalSpeed, false), delay))
     }
@@ -277,21 +277,23 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   display: block;
+  z-index: 1;
+  position: relative;
 }
 
 .pixel-card {
-  height: 400px;
-  width: 300px;
   position: relative;
   overflow: hidden;
   display: grid;
   place-items: center;
-  aspect-ratio: 4 / 5;
-  border: 1px solid #27272a;
-  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   isolation: isolate;
   transition: border-color 200ms cubic-bezier(0.5, 1, 0.89, 1);
   user-select: none;
+  background: rgba(18, 15, 23, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .pixel-card::before {
@@ -300,13 +302,21 @@ onMounted(() => {
   inset: 0;
   margin: auto;
   aspect-ratio: 1;
-  background: radial-gradient(circle, #09090b, transparent 85%);
+  background: radial-gradient(circle, rgba(9, 9, 11, 0.8), transparent 85%);
   opacity: 0;
   transition: opacity 800ms cubic-bezier(0.5, 1, 0.89, 1);
+  z-index: 0;
 }
 
 .pixel-card:hover::before,
 .pixel-card:focus-within::before {
-  opacity: 1;
+  opacity: 0.3;
+}
+
+/* Ensure content is always visible above the pixel animation */
+:slotted(*) {
+  position: relative;
+  z-index: 10;
+  color: white;
 }
 </style>

@@ -3,38 +3,32 @@
     <div class="skills-inner">
       <h2 class="section-headline reveal float-in">个人技能</h2>
       <p class="section-sub reveal reveal-delay-1">4年自动化领域机器人集成经验，掌握机器人、视觉、电气、上位机等技术能力</p>
-      <div class="skills-content-wrapper">
-        <div class="skills-video-container reveal reveal-delay-2">
-          <div class="video-wrap">
-            <video
-              class="skills-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              src="@/assets/show.mp4"
-            ></video>
-            <div class="video-fade-top"></div>
-            <div class="video-fade-bottom"></div>
-            <div class="video-fade-left"></div>
-            <div class="video-fade-right"></div>
-          </div>
-        </div>
-        <div class="skills-grid">
-          <div
-            v-for="(skill, index) in skills"
-            :key="skill.name"
-            class="skill-card-no-bg"
-            :style="{ transitionDelay: index * 100 + 'ms' }"
-          >
-            <PixelCard variant="blue">
-              <div class="skill-content">
-                <h4 class="skill-name">{{ skill.name }}</h4>
-                <p class="skill-desc">{{ skill.desc }}</p>
-                <p class="skill-level">{{ skill.level }}%</p>
-              </div>
-            </PixelCard>
-          </div>
+      <div class="full-bleed video-wrap reveal reveal-delay-2">
+        <video
+          class="skills-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          src="@/assets/show.mp4"
+        ></video>
+        <div class="video-fade-top"></div>
+        <div class="video-fade-bottom"></div>
+      </div>
+      <div class="skills-grid">
+        <div
+          v-for="(skill, index) in skills"
+          :key="skill.name"
+          class="highlight-card skill-card"
+          :style="{ transitionDelay: index * 100 + 'ms' }"
+        >
+          <PixelCard variant="blue">
+            <div class="skill-content">
+              <h4 class="skill-name">{{ skill.name }}</h4>
+              <p class="skill-desc">{{ skill.desc }}</p>
+              <p class="skill-level">{{ skill.level }}%</p>
+            </div>
+          </PixelCard>
         </div>
       </div>
     </div>
@@ -52,28 +46,17 @@ import PixelCard from './PixelCard.vue'
   background: var(--color-bg-section-alt);
 }
 .skills-inner {
-  max-width: 1200px;
+  max-width: 980px;
   margin: 0 auto;
-}
-.skills-content-wrapper {
-  display: flex;
-  gap: 20px;
-  margin-top: 48px;
-}
-.skills-video-container {
-  flex: 1;
-  min-width: 0;
 }
 .video-wrap {
   position: relative;
-  width: 100%;
-  border-radius: 20px;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  border-radius: 20px;
 }
 .skills-video {
   width: 100%;
-  height: 100%;
+  height: 500px;
   object-fit: cover;
   display: block;
 }
@@ -82,59 +65,27 @@ import PixelCard from './PixelCard.vue'
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 60px;
   background: linear-gradient(to bottom, var(--color-bg-section-alt), transparent);
   pointer-events: none;
-  z-index: 1;
 }
 .video-fade-bottom {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: 80px;
   background: linear-gradient(to top, var(--color-bg-section-alt), transparent);
   pointer-events: none;
-  z-index: 1;
-}
-.video-fade-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 40px;
-  background: linear-gradient(to right, var(--color-bg-section-alt), transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-.video-fade-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 40px;
-  background: linear-gradient(to left, var(--color-bg-section-alt), transparent);
-  pointer-events: none;
-  z-index: 1;
 }
 .skills-grid {
-  flex: 1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  min-width: 0;
-}
-.skill-card-no-bg {
-  position: relative;
-  border-radius: 25px;
-  overflow: hidden;
-  height: 0;
-  padding-bottom: 125%; /* Maintain aspect ratio 4:5 */
+  margin-top: 48px;
 }
 .skill-content {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 24px;
@@ -144,18 +95,21 @@ import PixelCard from './PixelCard.vue'
   align-items: center;
   text-align: center;
   z-index: 10;
+  pointer-events: none;
 }
 .skill-name {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
   color: var(--color-text-primary);
   margin-bottom: 10px;
+  pointer-events: auto;
 }
 .skill-desc {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   margin-top: 10px;
   line-height: 1.7;
+  pointer-events: auto;
 }
 .skill-level {
   font-size: var(--text-base);
@@ -163,18 +117,6 @@ import PixelCard from './PixelCard.vue'
   margin-top: 10px;
   font-family: var(--font-mono);
   font-weight: var(--font-semibold);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .skills-content-wrapper {
-    flex-direction: column;
-  }
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-  .section-alt {
-    padding: 80px 16px;
-  }
+  pointer-events: auto;
 }
 </style>
