@@ -19,15 +19,16 @@
         <div
           v-for="(skill, index) in skills"
           :key="skill.name"
-          class="highlight-card skill-card tilt-card"
+          class="highlight-card skill-card"
           :style="{ transitionDelay: index * 100 + 'ms' }"
         >
-          <h4 class="skill-name">{{ skill.name }}</h4>
-          <p class="skill-desc">{{ skill.desc }}</p>
-          <p class="skill-level">{{ skill.level }}%</p>
-          <div class="skill-progress-bg">
-            <div class="skill-progress-bar" :data-width="skill.level" style="width: 0%;"></div>
-          </div>
+          <PixelCard variant="blue">
+            <div class="skill-content">
+              <h4 class="skill-name">{{ skill.name }}</h4>
+              <p class="skill-desc">{{ skill.desc }}</p>
+              <p class="skill-level">{{ skill.level }}%</p>
+            </div>
+          </PixelCard>
         </div>
       </div>
     </div>
@@ -36,6 +37,7 @@
 
 <script setup>
 import { skills } from '../data/skills.js'
+import PixelCard from './PixelCard.vue'
 </script>
 
 <style scoped>
@@ -51,7 +53,6 @@ import { skills } from '../data/skills.js'
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  margin: 40px 0;
 }
 .skills-video {
   width: 100%;
@@ -80,44 +81,40 @@ import { skills } from '../data/skills.js'
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
   margin-top: 48px;
 }
-
-/* Skill card - Apple style */
-.skill-card {
-  padding: 32px;
+.skill-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  transition: all 0.3s ease;
+  z-index: 10;
 }
-.skill-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-elevated);
-}
-
 .skill-name {
   font-size: var(--text-xl);
   font-weight: var(--font-semibold);
   color: var(--color-text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .skill-desc {
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   margin-top: 10px;
   line-height: 1.7;
-  max-width: 100%;
-  text-wrap: balance;
 }
 .skill-level {
   font-size: var(--text-base);
   color: var(--color-text-secondary);
-  margin-top: 12px;
+  margin-top: 10px;
   font-family: var(--font-mono);
   font-weight: var(--font-semibold);
-  align-self: flex-start;
 }
 </style>

@@ -2,6 +2,7 @@
   <div
     ref="containerRef"
     class="pixel-card"
+    :class="className"
     @mouseenter="handleAnimation('appear')"
     @mouseleave="handleAnimation('disappear')"
     :tabindex="finalNoFocus ? -1 : 0"
@@ -12,42 +13,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 
-const props = defineProps({
-  variant: {
-    type: String,
-    default: 'default'
-  },
-  gap: {
-    type: Number,
-    default: null
-  },
-  speed: {
-    type: Number,
-    default: null
-  },
-  colors: {
-    type: String,
-    default: null
-  },
-  noFocus: {
-    type: Boolean,
-    default: null
-  },
-  className: {
-    type: String,
-    default: ''
-  }
-})
-
-const containerRef = ref(null)
-const canvasRef = ref(null)
-const pixelsRef = ref([])
-const animationRef = ref(null)
-const timePreviousRef = ref(performance.now())
-
-// Define variants
+// Define variants configuration
 const VARIANTS = {
   default: {
     activeColor: null,
@@ -79,13 +47,7 @@ const VARIANTS = {
   }
 }
 
-const variantCfg = VARIANTS[props.variant] || VARIANTS.default
-const finalGap = props.gap ?? variantCfg.gap
-const finalSpeed = props.speed ?? variantCfg.speed
-const finalColors = props.colors ?? variantCfg.colors
-const finalNoFocus = props.noFocus ?? variantCfg.noFocus
-
-// Pixel class
+// Define Pixel class
 class Pixel {
   constructor(canvas, context, x, y, color, speed, delay) {
     this.width = canvas.width
@@ -161,6 +123,7 @@ class Pixel {
   }
 }
 
+// Get effective speed considering reduced motion
 const getEffectiveSpeed = (value, reducedMotion) => {
   const min = 0
   const max = 100
@@ -176,8 +139,50 @@ const getEffectiveSpeed = (value, reducedMotion) => {
   }
 }
 
-const initPixels = async () => {
-  await nextTick()
+// Props
+const props = defineProps({
+  variant: {
+    type: String,
+    default: 'default'
+  },
+  gap: {
+    type: Number,
+    default: null
+  },
+  speed: {
+    type: Number,
+    default: null
+  },
+  colors: {
+    type: String,
+    default: null
+  },
+  noFocus: {
+    type: Boolean,
+    default: null
+  },
+  className: {
+    type: String,
+    default: ''
+  }
+})
+
+// Refs
+const containerRef = ref(null)
+const canvasRef = ref(null)
+const pixelsRef = ref([])
+const animationRef = ref(null)
+const timePreviousRef = ref(performance.now())
+
+// Get variant configuration
+const variantCfg = VARIANTS[props.variant] || VARIANTS.default
+const finalGap = props.gap ?? variantCfg.gap
+const finalSpeed = props.speed ?? variantCfg.speed
+const finalColors = props.colors ?? variantCfg.colors
+const finalNoFocus = props.noFocus ?? variantCfg.noFocus
+
+// Initialize pixels
+const initPixels = () => {
   if (!containerRef.value || !canvasRef.value) return
 
   const rect = containerRef.value.getBoundingClientRect()
@@ -199,7 +204,7 @@ const initPixels = async () => {
       const dx = x - width / 2
       const dy = y - height / 2
       const distance = Math.sqrt(dx * dx + dy * dy)
-      const delay = 0 // Using 0 for immediate start
+      const delay = distance
 
       pxs.push(new Pixel(canvasRef.value, ctx, x, y, color, getEffectiveSpeed(finalSpeed, false), delay))
     }
@@ -207,6 +212,7 @@ const initPixels = async () => {
   pixelsRef.value = pxs
 }
 
+// Animation function
 const doAnimate = (fnName) => {
   animationRef.value = requestAnimationFrame(() => doAnimate(fnName))
   const timeNow = performance.now()
@@ -234,30 +240,35 @@ const doAnimate = (fnName) => {
   }
 }
 
+// Handle animation
 const handleAnimation = (name) => {
   cancelAnimationFrame(animationRef.value)
   animationRef.value = requestAnimationFrame(() => doAnimate(name))
 }
 
-onMounted(async () => {
-  await initPixels()
+// Watch for prop changes and reinitialize
+watch([() => props.gap, () => props.speed, () => props.colors, () => props.noFocus], () => {
+  initPixels()
+})
+
+// Lifecycle
+onMounted(() => {
+  initPixels()
+  
+  // Setup resize observer
   const resizeObserver = new ResizeObserver(() => {
     initPixels()
   })
+  
   if (containerRef.value) {
     resizeObserver.observe(containerRef.value)
   }
   
-  // Clean up function
+  // Cleanup
   onUnmounted(() => {
     resizeObserver.disconnect()
     cancelAnimationFrame(animationRef.value)
   })
-})
-
-// Clean up animation frame on unmount
-onUnmounted(() => {
-  cancelAnimationFrame(animationRef.value)
 })
 </script>
 
