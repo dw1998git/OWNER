@@ -122,9 +122,9 @@ const resetLink = (event) => {
   border-radius: 8px;
   background: radial-gradient(
     circle at center,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(245, 245, 247, 0.15) 40%,
-    rgba(245, 245, 247, 0.05) 70%,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0.05) 70%,
     transparent 100%
   );
   opacity: 0;
@@ -146,7 +146,7 @@ const resetLink = (event) => {
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #f5f5f7, #0071e3, #f5f5f7);
+  background: #000000; /* 黑色线条 */
   transition: all 0.4s ease;
   transform: translateX(-50%);
   border-radius: 2px;
