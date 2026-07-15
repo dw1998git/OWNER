@@ -4,6 +4,7 @@
       <h2 class="section-headline reveal float-in">个人技能</h2>
       <p class="section-sub reveal reveal-delay-1">4年自动化领域机器人集成经验，掌握机器人、视觉、电气、上位机等技术能力</p>
       <div class="skills-content-area">
+        <!-- 视频 -->
         <div class="video-wrap full-bleed reveal reveal-delay-2">
           <video
             class="skills-video"
@@ -18,23 +19,23 @@
           <div class="video-fade-bottom"></div>
           <div class="video-fade-left"></div>
           <div class="video-fade-right"></div>
-          <!-- 卡片居中叠加 -->
-          <div class="cards-overlay">
-            <div class="skills-grid">
-              <div
-                v-for="(skill, index) in skills"
-                :key="skill.name"
-                class="skill-card"
-                :style="{ transitionDelay: index * 100 + 'ms' }"
-              >
-                <PixelCard variant="blue">
-                  <div class="skill-content">
-                    <h4 class="skill-name">{{ skill.name }}</h4>
-                    <p class="skill-desc">{{ skill.desc }}</p>
-                    <p class="skill-level">{{ skill.level }}%</p>
-                  </div>
-                </PixelCard>
-              </div>
+        </div>
+        <!-- 卡片 -->
+        <div class="cards-section">
+          <div class="skills-grid">
+            <div
+              v-for="(skill, index) in skills"
+              :key="skill.name"
+              class="skill-card"
+              :style="{ transitionDelay: index * 100 + 'ms' }"
+            >
+              <PixelCard variant="blue">
+                <div class="skill-content">
+                  <h4 class="skill-name">{{ skill.name }}</h4>
+                  <p class="skill-desc">{{ skill.desc }}</p>
+                  <p class="skill-level">{{ skill.level }}%</p>
+                </div>
+              </PixelCard>
             </div>
           </div>
         </div>
@@ -58,6 +59,9 @@ import PixelCard from './PixelCard.vue'
   margin: 0 auto;
 }
 .skills-content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
   margin-top: 48px;
 }
 .video-wrap {
@@ -115,28 +119,15 @@ import PixelCard from './PixelCard.vue'
   z-index: 2;
 }
 
-/* 卡片叠加层 */
-.cards-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  width: 100%;
+/* 卡片 */
+.cards-section {
   display: flex;
   justify-content: center;
-  pointer-events: none; /* 让点击穿透到视频 */
 }
-.cards-overlay > * {
-  pointer-events: auto; /* 卡片本身恢复可交互 */
-}
-
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  width: fit-content;
-  max-width: 100%;
 }
 .skill-card {
   /* PixelCard 自带样式 */
