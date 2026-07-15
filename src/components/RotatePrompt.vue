@@ -1,6 +1,7 @@
 <template>
   <div class="rotate-overlay" v-if="showPrompt">
     <div class="rotate-card">
+      <button class="rotate-close" @click="showPrompt = false">&times;</button>
       <div class="rotate-icon">
         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
@@ -13,8 +14,8 @@
           <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
         </svg>
       </div>
-      <p class="rotate-text">请旋转手机</p>
-      <p class="rotate-sub">横屏浏览体验更佳</p>
+      <p class="rotate-text">建议横屏浏览</p>
+      <p class="rotate-sub">点击关闭后继续浏览</p>
     </div>
   </div>
 </template>
@@ -59,6 +60,27 @@ onBeforeUnmount(() => {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  position: relative;
+}
+.rotate-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.rotate-close:hover {
+  background: rgba(255,255,255,0.2);
 }
 .rotate-icon {
   display: flex;

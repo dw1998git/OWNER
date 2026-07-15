@@ -7,11 +7,14 @@
         <!-- 视频 -->
         <div class="video-wrap full-bleed reveal reveal-delay-2">
           <video
+            ref="videoRef"
             class="skills-video"
             autoplay
             muted
             loop
             playsinline
+            webkit-playsinline
+            preload="auto"
             src="@/assets/show.mp4"
           ></video>
           <!-- 四边羽化遮罩 -->
@@ -44,8 +47,24 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import { skills } from '../data/skills.js'
 import PixelCard from './PixelCard.vue'
+
+const videoRef = ref(null)
+
+onMounted(() => {
+  const tryPlay = () => {
+    if (videoRef.value) {
+      videoRef.value.play().catch(() => {
+        document.addEventListener('touchstart', () => {
+          videoRef.value?.play()
+        }, { once: true })
+      })
+    }
+  }
+  tryPlay()
+})
 </script>
 
 <style scoped>
