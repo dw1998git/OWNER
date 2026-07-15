@@ -287,7 +287,7 @@ onMounted(() => {
   display: grid;
   place-items: center;
   aspect-ratio: 4 / 5;
-  border: 1px solid #27272a;
+  border: none;
   border-radius: 25px;
   isolation: isolate;
   transition: border-color 200ms cubic-bezier(0.5, 1, 0.89, 1);
