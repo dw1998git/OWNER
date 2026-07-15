@@ -309,4 +309,17 @@ onMounted(() => {
 .pixel-card:focus-within::before {
   opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .pixel-card {
+    width: 100%;
+    height: 280px;
+    aspect-ratio: auto;
+  }
+}
+@media (max-width: 480px) {
+  .pixel-card {
+    height: 220px;
+  }
+}
 </style>
