@@ -4,14 +4,33 @@
       <h2 class="section-headline reveal">项目作品，<br>实力说话。</h2>
       <p class="section-sub reveal reveal-delay-1">参与9+核心项目，覆盖汽车、高铁、新能源、智能制造等领域</p>
     </div>
-    <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
+    <ProjectCard
+      v-for="project in projects"
+      :key="project.id"
+      :project="project"
+      :image-manifest="imageManifest ? imageManifest[project.imageKey] || null : null"
+    />
   </section>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import { projects } from '../data/projects.js'
 import ProjectCard from './ProjectCard.vue'
 import { useProjectScroll } from '../composables/useProjectScroll.js'
+
+const imageManifest = ref(null)
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/images/manifest.json')
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    imageManifest.value = await res.json()
+  } catch (err) {
+    console.warn('Image manifest not available, using original images:', err.message)
+    imageManifest.value = null
+  }
+})
 
 useProjectScroll()
 </script>
