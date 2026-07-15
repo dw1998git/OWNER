@@ -12,15 +12,15 @@ export function useProjectScroll() {
     const maxBlur = isMobile ? 8 : 30
     const maxScale = isMobile ? 1.03 : 1.08
 
-    // 移动端时间线：文字在整个滚动过程中大部分时间可见
+    // 移动端时间线：文字几乎全程可见，快速滑动时也不跳过
     const T = isMobile ? {
       clipEnd: 0.35,
-      blurEnd: 0.5,
-      textInStart: 0.15,
-      textInEnd: 0.25,
-      textOutStart: 0.7,
-      textOutEnd: 0.9,
-      blurStayEnd: 0.7,
+      blurEnd: 0.55,
+      textInStart: 0.02,
+      textInEnd: 0.08,
+      textOutStart: 0.8,
+      textOutEnd: 0.98,
+      blurStayEnd: 0.75,
       blurOutEnd: 1.0,
     } : {
       clipEnd: 0.45,
