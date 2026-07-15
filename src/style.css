@@ -504,19 +504,14 @@ body {
   opacity: 0;
 }
 
-/* Real image layer */
+/* Real image layer — filter/transform 由 useProjectScroll.js 内联样式控制，CSS 只处理淡入 */
 .project-image-real {
   opacity: 0;
-  filter: blur(20px);
-  transform: scale(1.1);
-  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease;
   z-index: 2;
-  will-change: filter, transform, opacity;
 }
 .image-ready {
   opacity: 1;
-  filter: blur(0);
-  transform: scale(1);
 }
 /* Bottom gradient fade to page background */
 .apple-project-image-wrap::after {

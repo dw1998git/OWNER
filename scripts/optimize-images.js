@@ -53,10 +53,10 @@ async function main() {
 
     console.log(`  processing: ${stem}`)
 
-    // 生成 LQIP
+    // 生成 LQIP（40px 缩略图，quality 60% 兼顾清晰度与体积）
     const lqipBuffer = await sharp(srcPath)
-      .resize(20)
-      .webp({ quality: 30 })
+      .resize(40)
+      .webp({ quality: 60 })
       .toBuffer()
     writeFileSync(outLqip, lqipBuffer)
 
