@@ -590,6 +590,9 @@ body {
 @media (max-width: 768px) {
   .skills-grid {
     grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
   }
   .section-headline {
     font-size: clamp(2rem, 8vw, 3rem) !important;
@@ -627,20 +630,23 @@ body {
     padding: 4px 10px !important;
   }
   .project-title {
-    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+    font-size: clamp(1.05rem, 4.5vw, 1.25rem) !important;
   }
   .project-desc {
-    font-size: 0.9375rem !important;
-    line-height: 1.8 !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 14px !important;
   }
   .project-header {
-    gap: 10px !important;
+    gap: 8px !important;
+    margin-bottom: 12px !important;
   }
   .role-badge {
-    font-size: 0.75rem !important;
+    font-size: 0.6875rem !important;
   }
   .project-date {
-    font-size: var(--text-base) !important;
+    font-size: 0.8125rem !important;
+    margin-bottom: 14px !important;
   }
   .video-fade-top { height: 30px !important; }
   .video-fade-bottom { height: 50px !important; }
@@ -661,11 +667,21 @@ body {
 @media (max-width: 480px) {
   .skills-grid {
     grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
   .apple-project-image-wrap::before { height: 15vh !important; }
   .apple-project-image-wrap::after { height: 30vh !important; }
   .apple-project-section { min-height: 120vh !important; }
   .apple-project-image-wrap { height: 45vh !important; }
+  .project-title { font-size: 1rem !important; }
+  .project-desc {
+    font-size: 0.75rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 10px !important;
+  }
+  .project-date { font-size: 0.75rem !important; }
+  .role-badge { font-size: 0.625rem !important; }
+  .project-header { gap: 6px !important; margin-bottom: 10px !important; }
   .cta-primary, .cta-secondary {
     font-size: 0.875rem !important;
     padding: 10px 20px !important;
