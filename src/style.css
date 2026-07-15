@@ -602,6 +602,8 @@ body {
   .apple-project-image-wrap { height: 55vh !important; }
   .apple-project-image-wrap img {
     object-position: center 30%;
+    object-fit: contain !important;
+    background: #000;
   }
   .section-padding {
     padding-left: 16px !important;
