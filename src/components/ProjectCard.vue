@@ -21,6 +21,7 @@
           :alt="project.title"
         >
         <img
+          ref="realImgRef"
           class="project-image-real"
           :src="`/images/${project.imageKey}-1280w.webp`"
           :srcset="imageManifest.srcset"
@@ -61,7 +62,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   project: {
@@ -75,6 +76,13 @@ const props = defineProps({
 })
 
 const imageLoaded = ref(false)
+const realImgRef = ref(null)
+
+function checkLoaded() {
+  if (realImgRef.value?.complete) {
+    imageLoaded.value = true
+  }
+}
 
 function onImageLoaded() {
   imageLoaded.value = true
@@ -83,6 +91,11 @@ function onImageLoaded() {
 function onImageError() {
   console.warn(`Image load failed for ${props.project.imageKey}, keeping placeholder`)
 }
+
+onMounted(() => {
+  // 处理缓存图片：@load 可能在 Vue 挂载前就已触发
+  checkLoaded()
+})
 </script>
 
 <style scoped>
