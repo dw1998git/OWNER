@@ -51,4 +51,10 @@
     min-height: 50vh;
   }
 }
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 40vh;
+    height: 60vh;
+  }
+}
 </style>
