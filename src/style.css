@@ -598,7 +598,7 @@ body {
   .project-text {
     padding: 12px 0 !important;
   }
-  .apple-project-section { min-height: 130vh !important; }
+  .apple-project-section { min-height: 280vh !important; }
   .apple-project-image-wrap { height: 55vh !important; }
   .apple-project-image-wrap img {
     object-position: center 30%;
