@@ -588,14 +588,6 @@ body {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    margin: 0 auto !important;
-    width: calc(100% - 32px) !important; /* 与 video-wrap 保持相同边距 */
-  }
   .section-headline {
     font-size: clamp(2rem, 8vw, 3rem) !important;
   }
@@ -667,11 +659,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .skills-grid {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-    width: calc(100% - 24px) !important; /* 与 video-wrap 保持相同边距 */
-  }
   .apple-project-image-wrap::before { height: 15vh !important; }
   .apple-project-image-wrap::after { height: 30vh !important; }
   .apple-project-section { min-height: 120vh !important; }
