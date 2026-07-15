@@ -4,23 +4,21 @@
       <h2 class="section-headline reveal float-in">个人技能</h2>
       <p class="section-sub reveal reveal-delay-1">4年自动化领域机器人集成经验，掌握机器人、视觉、电气、上位机等技术能力</p>
       <div class="skills-content-area">
-        <div class="video-section">
-          <div class="full-bleed video-wrap reveal reveal-delay-2">
-            <video
-              class="skills-video"
-              autoplay
-              muted
-              loop
-              playsinline
-              src="@/assets/show.mp4"
-            ></video>
-            <!-- 四边羽化遮罩 -->
-            <div class="video-fade-top"></div>
-            <div class="video-fade-bottom"></div>
-            <div class="video-fade-left"></div>
-            <div class="video-fade-right"></div>
-          </div>
-          <!-- 卡片叠加在视频上方 -->
+        <div class="video-wrap full-bleed reveal reveal-delay-2">
+          <video
+            class="skills-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            src="@/assets/show.mp4"
+          ></video>
+          <!-- 四边羽化遮罩 -->
+          <div class="video-fade-top"></div>
+          <div class="video-fade-bottom"></div>
+          <div class="video-fade-left"></div>
+          <div class="video-fade-right"></div>
+          <!-- 卡片居中叠加 -->
           <div class="cards-overlay">
             <div class="skills-grid">
               <div
@@ -61,10 +59,6 @@ import PixelCard from './PixelCard.vue'
 }
 .skills-content-area {
   margin-top: 48px;
-}
-.video-section {
-  position: relative;
-  width: 100%;
 }
 .video-wrap {
   width: 100%;
