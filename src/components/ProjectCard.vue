@@ -4,35 +4,21 @@
     :data-project="project.id"
   >
     <div class="apple-project-image-wrap">
-      <!-- 降级模式：无 manifest 时使用原始图片 -->
       <img
-        v-if="!imageManifest"
+        v-if="imageManifest"
+        :src="`/images/${project.imageKey}-1280w.webp`"
+        :srcset="imageManifest.srcset"
+        :sizes="imageManifest.sizes"
+        :alt="project.title"
+        decoding="async"
+      >
+      <img
+        v-else
         :src="project.image"
         :alt="project.title"
         loading="lazy"
         decoding="async"
       >
-      <!-- 优化模式：LQIP 占位层 + 真实图片层 -->
-      <template v-else>
-        <img
-          class="project-image-placeholder"
-          :src="imageManifest.placeholder"
-          :class="{ 'placeholder-hidden': imageLoaded }"
-          :alt="project.title"
-        >
-        <img
-          ref="realImgRef"
-          class="project-image-real"
-          :src="`/images/${project.imageKey}-1280w.webp`"
-          :srcset="imageManifest.srcset"
-          :sizes="imageManifest.sizes"
-          decoding="async"
-          :alt="project.title"
-          :class="{ 'image-ready': imageLoaded }"
-          @load="onImageLoaded"
-          @error="onImageError"
-        >
-      </template>
     </div>
     <div class="apple-project-content">
       <div class="project-text">
@@ -61,9 +47,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-
-const props = defineProps({
+defineProps({
   project: {
     type: Object,
     required: true
@@ -72,28 +56,6 @@ const props = defineProps({
     type: Object,
     default: null
   }
-})
-
-const imageLoaded = ref(false)
-const realImgRef = ref(null)
-
-function checkLoaded() {
-  if (realImgRef.value?.complete) {
-    imageLoaded.value = true
-  }
-}
-
-function onImageLoaded() {
-  imageLoaded.value = true
-}
-
-function onImageError() {
-  console.warn(`Image load failed for ${props.project.imageKey}, keeping placeholder`)
-}
-
-onMounted(() => {
-  // 处理缓存图片：@load 可能在 Vue 挂载前就已触发
-  checkLoaded()
 })
 </script>
 

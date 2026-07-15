@@ -26,12 +26,7 @@ export function useProjectScroll() {
 
       for (let i = 0; i < sections.length; i++) {
         const s = sections[i]
-        const realImg = s.querySelector('.project-image-real')
-        const placeholderImg = s.querySelector('.project-image-placeholder')
-        // 优先使用已加载的真实图片，否则用占位层，都没有则回退到任意 img
-        const img = (realImg?.classList.contains('image-ready') ? realImg : null)
-          || placeholderImg
-          || s.querySelector('.apple-project-image-wrap img')
+        const img = s.querySelector('.apple-project-image-wrap img')
         const content = s.querySelector('.apple-project-content')
         if (!img) continue
 
