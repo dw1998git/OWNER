@@ -12,12 +12,12 @@ export function useProjectScroll() {
     const maxBlur = isMobile ? 8 : 30
     const maxScale = isMobile ? 1.03 : 1.08
 
-    // 移动端时间线：文字更早出现、更多停留时间（min-height 缩小后滚动距离短）
+    // 移动端时间线：文字在整个滚动过程中大部分时间可见
     const T = isMobile ? {
-      clipEnd: 0.4,
-      blurEnd: 0.55,
-      textInStart: 0.4,
-      textInEnd: 0.55,
+      clipEnd: 0.35,
+      blurEnd: 0.5,
+      textInStart: 0.15,
+      textInEnd: 0.25,
       textOutStart: 0.7,
       textOutEnd: 0.9,
       blurStayEnd: 0.7,

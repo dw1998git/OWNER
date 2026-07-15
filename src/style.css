@@ -661,7 +661,7 @@ body {
 @media (max-width: 480px) {
   .apple-project-image-wrap::before { height: 15vh !important; }
   .apple-project-image-wrap::after { height: 30vh !important; }
-  .apple-project-section { min-height: 100vh !important; }
+  .apple-project-section { min-height: 110vh !important; }
   .apple-project-image-wrap { height: 45vh !important; }
   .project-title { font-size: 0.75rem !important; }
   .project-desc {
