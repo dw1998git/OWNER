@@ -1,0 +1,65 @@
+{
+  "proj-charging-robot": {
+    "srcset": "/images/proj-charging-robot-640w.webp 640w, /images/proj-charging-robot-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoUAA8APxFysFAsJqSisAgBgCIJZQC06CHfcWYmlSWt2gOQ0AD8j3xMBSV01OXvRDr9p9ITyQhI+QTbg6d+R9BwSF+GMGumFXFO0T5Xq2dmFLZksG3m9HyEdSP0YMnY6t4AAA==",
+    "width": 1280,
+    "height": 960
+  },
+  "proj-coffee-robot": {
+    "srcset": "/images/proj-coffee-robot-640w.webp 640w, /images/proj-coffee-robot-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwBACdASoUAA4APxFysFAsJqSisAgBgCIJZwDE2B6o1sz19j3xnmSqfgAA/tS5nbS86q7nLKRn04z/U6m2E93lI0Zt/3oy+aGkvMLKaqyQZLfsBkDbH1q9acl4mJD9n7YSIeLAAAA=",
+    "width": 1280,
+    "height": 904
+  },
+  "proj-dual-arm": {
+    "srcset": "/images/proj-dual-arm-640w.webp 640w, /images/proj-dual-arm-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAwBACdASoUAAsAPxFysFAsJqSisAgBgCIJZwAFEB7li3P9plfHfVpCwAAA/qoaDqjxG1cz5JiDZoBXMnp4EKPRCVetbUXm3ieCIh+Yqjm08sdw1nzhgWEDewryV7BaVZ9YJ4csq756PNz1sggbe6oxexlb+oS3z5P37F2AAAA=",
+    "width": 1280,
+    "height": 720
+  },
+  "proj-garage-charging": {
+    "srcset": "/images/proj-garage-charging-640w.webp 640w, /images/proj-garage-charging-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBACdASoUAAsAPxFysFAsJqSisAgBgCIJZgCdMoACEr/4oIkl+5hzRgD5tNNs9uamkCrtn6qTeE0Qmm4Env0qquwXSpGVIE/F98f9tTa2nPni8KfKVamzRx2vHARpATrx6X3C2JTL8cdK7BYAAA==",
+    "width": 1280,
+    "height": 722
+  },
+  "proj-magna": {
+    "srcset": "/images/proj-magna-640w.webp 640w, /images/proj-magna-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwBACdASoUAAsAPxFysFAsJqSisAgBgCIJbACdMoRwACre24oDyORqVlgA/uvuKfAPmYDEMHu9/xGVXcKIiyyK1N0xfIJixb4GvBfRIbgq7Mfbo/KJ4Cs9xTntYrWbNu5tryIKAAA=",
+    "width": 1280,
+    "height": 719
+  },
+  "proj-palletizing": {
+    "srcset": "/images/proj-palletizing-640w.webp 640w, /images/proj-palletizing-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4WAoAAAAQAAAAEwAACwAAQUxQSCoAAAABN6AgbQPGv+V2x0ZExJ9zoZiRJGgOgpVag/Wn6d8CRPR/AiL+p8MR7zFWUDggcAAAAFAEAJ0BKhQADAA/EXKwUCwmpKKwCAGAIglkAJ0R/+A8gwklzGMtAzeepYAA/uc1BcLyMXV9H1d/wRS8tNxoFrHLYAt0MyTxuqHpHWJmQ4sZR2oywGvihuLTY3Rro33zY4yJcZvfxLF84hnBRYUAAAA=",
+    "width": 1280,
+    "height": 762
+  },
+  "proj-rail-grinding": {
+    "srcset": "/images/proj-rail-grinding-640w.webp 640w, /images/proj-rail-grinding-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAQBACdASoUAA0APxFwsFAsJiSisAgBgCIJQBkTA8QnULlkGW8RRo/wQADOPbXC8L9P0m2nkeV7rrWYe98FUB41faoLfZnnp7Rvqe4d+8sVpwWquPugshEVYm+yP5+63e3gPMG/7yI2+MmRcGbGTuAA",
+    "width": 1280,
+    "height": 822
+  },
+  "proj-water-meter": {
+    "srcset": "/images/proj-water-meter-640w.webp 640w, /images/proj-water-meter-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAAAwBQCdASoUABsAPxF8s1QsJ6QjKAqpgCIJQBdgO4FwTkvFwbPCDm+Qw6+Zf3C37iB7MAD8XWf/WNSzIRQmIL6m6HrhOSH6/6d5LhyXeoYoG2VIDriLOjbJvkoRYx+pmr1jSPMgCFasCXGUoEvN6w2sBF9ZFCTCNqSTzIAbNKpSy6XmiiQwRHpJsSQ+WP+vnV+8npcvmL3JaGkmXyRxLxVqmAyzqxuvPHk1Q3o0cpjjkjTTkpInf7G2j+/lfWcn/xgAAA==",
+    "width": 1280,
+    "height": 1707
+  },
+  "proj-welding": {
+    "srcset": "/images/proj-welding-640w.webp 640w, /images/proj-welding-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADwAwCdASoUAAsAPxFysFAsJqSisAgBgCIJYgCdACPMDOixescTvRGAAMtIr50bWrsVYTUd59o8CHPmKtsyxUkzzoxIdDgxvDY4SLLF/5ENQxML4YwmXmvy4/NlbJN28Q0E1HtIbcLv/WC43ucW9hE4M75gAA==",
+    "width": 1280,
+    "height": 683
+  }
+}
