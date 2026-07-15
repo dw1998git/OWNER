@@ -26,7 +26,6 @@
           :src="`/images/${project.imageKey}-1280w.webp`"
           :srcset="imageManifest.srcset"
           :sizes="imageManifest.sizes"
-          loading="lazy"
           decoding="async"
           :alt="project.title"
           :class="{ 'image-ready': imageLoaded }"
