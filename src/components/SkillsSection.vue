@@ -166,6 +166,14 @@ import PixelCard from './PixelCard.vue'
 }
 
 @media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: calc(100% - 32px);
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
   .video-fade-left {
     width: 30px;
   }
@@ -177,6 +185,13 @@ import PixelCard from './PixelCard.vue'
   }
   .video-fade-bottom {
     height: 40px;
+  }
+}
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: calc(100% - 24px);
   }
 }
 </style>
