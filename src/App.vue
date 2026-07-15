@@ -1,4 +1,5 @@
 <template>
+  <RotatePrompt />
   <AuroraBackground />
   <AppNav />
   <main>
@@ -14,6 +15,7 @@
 </template>
 
 <script setup>
+import RotatePrompt from './components/RotatePrompt.vue'
 import AuroraBackground from './components/AuroraBackground.vue'
 import AppNav from './components/AppNav.vue'
 import HeroSection from './components/HeroSection.vue'
