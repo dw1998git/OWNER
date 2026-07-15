@@ -33,7 +33,6 @@
                 <div class="skill-content">
                   <h4 class="skill-name">{{ skill.name }}</h4>
                   <p class="skill-desc">{{ skill.desc }}</p>
-                  <p class="skill-level">{{ skill.level }}%</p>
                 </div>
               </PixelCard>
             </div>
