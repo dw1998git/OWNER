@@ -164,4 +164,19 @@ import PixelCard from './PixelCard.vue'
   font-family: var(--font-mono);
   font-weight: var(--font-semibold);
 }
+
+@media (max-width: 768px) {
+  .video-fade-left {
+    width: 30px;
+  }
+  .video-fade-right {
+    width: 30px;
+  }
+  .video-fade-top {
+    height: 40px;
+  }
+  .video-fade-bottom {
+    height: 40px;
+  }
+}
 </style>
