@@ -3,7 +3,7 @@
     class="apple-project-section"
     :data-project="project.id"
   >
-    <div class="apple-project-image-wrap" ref="imageWrapRef">
+    <div class="apple-project-image-wrap">
       <!-- 降级模式：无 manifest 时使用原始图片 -->
       <img
         v-if="!imageManifest"
@@ -21,10 +21,12 @@
           :alt="project.title"
         >
         <img
-          v-if="shouldLoad"
           class="project-image-real"
+          :src="`/images/${project.imageKey}-1280w.webp`"
           :srcset="imageManifest.srcset"
           :sizes="imageManifest.sizes"
+          loading="lazy"
+          decoding="async"
           :alt="project.title"
           :class="{ 'image-ready': imageLoaded }"
           @load="onImageLoaded"
@@ -59,7 +61,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref } from 'vue'
 
 const props = defineProps({
   project: {
@@ -72,8 +74,6 @@ const props = defineProps({
   }
 })
 
-const imageWrapRef = ref(null)
-const shouldLoad = ref(false)
 const imageLoaded = ref(false)
 
 function onImageLoaded() {
@@ -83,39 +83,6 @@ function onImageLoaded() {
 function onImageError() {
   console.warn(`Image load failed for ${props.project.imageKey}, keeping placeholder`)
 }
-
-let observer = null
-
-onMounted(() => {
-  if (!props.imageManifest) return
-
-  if (!('IntersectionObserver' in window)) {
-    shouldLoad.value = true
-    return
-  }
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          shouldLoad.value = true
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.2 }
-  )
-
-  if (imageWrapRef.value) {
-    observer.observe(imageWrapRef.value)
-  }
-})
-
-onBeforeUnmount(() => {
-  if (observer) {
-    observer.disconnect()
-  }
-})
 </script>
 
 <style scoped>
