@@ -3,13 +3,34 @@
     class="apple-project-section"
     :data-project="project.id"
   >
-    <div class="apple-project-image-wrap">
+    <div class="apple-project-image-wrap" ref="imageWrapRef">
+      <!-- 降级模式：无 manifest 时使用原始图片 -->
       <img
+        v-if="!imageManifest"
         :src="project.image"
         :alt="project.title"
         loading="lazy"
         decoding="async"
       >
+      <!-- 优化模式：LQIP 占位层 + 真实图片层 -->
+      <template v-else>
+        <img
+          class="project-image-placeholder"
+          :src="imageManifest.placeholder"
+          :class="{ 'placeholder-hidden': imageLoaded }"
+          :alt="project.title"
+        >
+        <img
+          v-if="shouldLoad"
+          class="project-image-real"
+          :srcset="imageManifest.srcset"
+          :sizes="imageManifest.sizes"
+          :alt="project.title"
+          :class="{ 'image-ready': imageLoaded }"
+          @load="onImageLoaded"
+          @error="onImageError"
+        >
+      </template>
     </div>
     <div class="apple-project-content">
       <div class="project-text">
@@ -38,10 +59,61 @@
 </template>
 
 <script setup>
-defineProps({
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const props = defineProps({
   project: {
     type: Object,
     required: true
+  },
+  imageManifest: {
+    type: Object,
+    default: null
+  }
+})
+
+const imageWrapRef = ref(null)
+const shouldLoad = ref(false)
+const imageLoaded = ref(false)
+
+function onImageLoaded() {
+  imageLoaded.value = true
+}
+
+function onImageError() {
+  console.warn(`Image load failed for ${props.project.imageKey}, keeping placeholder`)
+}
+
+let observer = null
+
+onMounted(() => {
+  if (!props.imageManifest) return
+
+  if (!('IntersectionObserver' in window)) {
+    shouldLoad.value = true
+    return
+  }
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          shouldLoad.value = true
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.2 }
+  )
+
+  if (imageWrapRef.value) {
+    observer.observe(imageWrapRef.value)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect()
   }
 })
 </script>
