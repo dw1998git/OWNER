@@ -664,7 +664,8 @@ body {
   }
   .apple-project-image-wrap::before { height: 15vh !important; }
   .apple-project-image-wrap::after { height: 30vh !important; }
-  .apple-project-section { min-height: 160vh !important; }
+  .apple-project-section { min-height: 120vh !important; }
+  .apple-project-image-wrap { height: 45vh !important; }
   .cta-primary, .cta-secondary {
     font-size: 0.875rem !important;
     padding: 10px 20px !important;
