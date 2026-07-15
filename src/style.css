@@ -595,12 +595,14 @@ body {
     font-size: clamp(2rem, 8vw, 3rem) !important;
   }
   .apple-project-content {
-    padding: 24px 16px 80px !important;
-    margin-top: -5vh !important;
+    padding: 20px 12px 60px !important;
+    margin-top: -8vh !important;
   }
   .project-text {
-    padding: 16px 0 !important;
+    padding: 12px 0 !important;
   }
+  .apple-project-section { min-height: 130vh !important; }
+  .apple-project-image-wrap { height: 55vh !important; }
   .apple-project-image-wrap img {
     object-position: center 30%;
   }
@@ -625,11 +627,17 @@ body {
     padding: 4px 10px !important;
   }
   .project-title {
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
   }
   .project-desc {
-    font-size: var(--text-base) !important;
+    font-size: 0.9375rem !important;
     line-height: 1.8 !important;
+  }
+  .project-header {
+    gap: 10px !important;
+  }
+  .role-badge {
+    font-size: 0.75rem !important;
   }
   .project-date {
     font-size: var(--text-base) !important;
