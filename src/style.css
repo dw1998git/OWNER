@@ -589,7 +589,7 @@ body {
 /* Mobile responsive */
 @media (max-width: 768px) {
   .skills-grid {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: 1fr !important;
     gap: 12px !important;
     max-width: 100% !important;
     overflow: hidden !important;
