@@ -310,7 +310,7 @@ onMounted(() => {
   opacity: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .pixel-card {
     width: 100%;
     height: 280px;

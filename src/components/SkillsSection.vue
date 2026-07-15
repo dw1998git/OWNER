@@ -136,7 +136,7 @@ import PixelCard from './PixelCard.vue'
   /* PixelCard 自带样式 */
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1024px) {
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -180,7 +180,7 @@ import PixelCard from './PixelCard.vue'
   font-weight: var(--font-semibold);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .video-fade-left {
     width: 30px;
   }
