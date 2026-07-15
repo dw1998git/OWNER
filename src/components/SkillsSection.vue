@@ -146,10 +146,7 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
-  width: calc(100% - 32px);
-  margin: 0 auto;
   overflow: hidden;
-  max-width: 100%;
 }
 .skill-card {
   /* PixelCard 自带样式 */
@@ -216,7 +213,6 @@ onMounted(() => {
 @media (max-width: 480px) {
   .skills-grid {
     gap: 10px;
-    width: calc(100% - 24px);
   }
 }
 </style>

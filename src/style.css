@@ -598,12 +598,10 @@ body {
   .project-text {
     padding: 12px 0 !important;
   }
-  .apple-project-section { min-height: 130vh !important; }
+  .apple-project-section { min-height: 110vh !important; }
   .apple-project-image-wrap { height: 55vh !important; }
   .apple-project-image-wrap img {
     object-position: center 30%;
-    object-fit: contain !important;
-    background: #000;
   }
   .section-padding {
     padding-left: 16px !important;
@@ -663,7 +661,7 @@ body {
 @media (max-width: 480px) {
   .apple-project-image-wrap::before { height: 15vh !important; }
   .apple-project-image-wrap::after { height: 30vh !important; }
-  .apple-project-section { min-height: 120vh !important; }
+  .apple-project-section { min-height: 100vh !important; }
   .apple-project-image-wrap { height: 45vh !important; }
   .project-title { font-size: 0.75rem !important; }
   .project-desc {
