@@ -12,6 +12,27 @@ export function useProjectScroll() {
     const maxBlur = isMobile ? 8 : 30
     const maxScale = isMobile ? 1.03 : 1.08
 
+    // 移动端时间线：文字更早出现、更多停留时间（min-height 缩小后滚动距离短）
+    const T = isMobile ? {
+      clipEnd: 0.4,
+      blurEnd: 0.55,
+      textInStart: 0.4,
+      textInEnd: 0.55,
+      textOutStart: 0.7,
+      textOutEnd: 0.9,
+      blurStayEnd: 0.7,
+      blurOutEnd: 1.0,
+    } : {
+      clipEnd: 0.45,
+      blurEnd: 0.65,
+      textInStart: 0.6,
+      textInEnd: 0.7,
+      textOutStart: 0.8,
+      textOutEnd: 0.95,
+      blurStayEnd: 0.9,
+      blurOutEnd: 1.0,
+    }
+
     function update() {
       const vh = window.innerHeight
 
@@ -32,8 +53,8 @@ export function useProjectScroll() {
 
         const { progress } = progresses[i]
 
-        // Block next project until this one is done (progress >= 0.95)
-        if (i > 0 && progresses[i - 1].progress < 0.95) {
+        // Block next project until this one is done
+        if (i > 0 && progresses[i - 1].progress < T.textOutEnd) {
           img.style.clipPath = i % 2 === 0 ? 'inset(0 100% 0 0)' : 'inset(0 0 0 100%)'
           img.style.filter = 'blur(0px)'
           img.style.transform = 'scale(1)'
@@ -59,8 +80,8 @@ export function useProjectScroll() {
         let clipPercent
         if (progress < 0.1) {
           clipPercent = 100
-        } else if (progress < 0.45) {
-          const t = (progress - 0.1) / 0.35
+        } else if (progress < T.clipEnd) {
+          const t = (progress - 0.1) / (T.clipEnd - 0.1)
           clipPercent = lerp(100, 0, t)
         } else {
           clipPercent = 0
@@ -75,16 +96,16 @@ export function useProjectScroll() {
 
         // Blur: ramp up after clip, then ramp down at end
         let blur, scale
-        if (progress < 0.45) {
+        if (progress < T.clipEnd) {
           blur = 0; scale = 1
-        } else if (progress < 0.65) {
-          const t = (progress - 0.45) / 0.2
+        } else if (progress < T.blurEnd) {
+          const t = (progress - T.clipEnd) / (T.blurEnd - T.clipEnd)
           blur = lerp(0, maxBlur, t)
           scale = lerp(1, maxScale, t)
-        } else if (progress < 0.9) {
+        } else if (progress < T.blurStayEnd) {
           blur = maxBlur; scale = maxScale
         } else {
-          const t = (progress - 0.9) / 0.1
+          const t = (progress - T.blurStayEnd) / (T.blurOutEnd - T.blurStayEnd)
           blur = lerp(maxBlur, 0, t)
           scale = lerp(maxScale, 1, t)
         }
@@ -95,8 +116,8 @@ export function useProjectScroll() {
 
         // Text: fade in on blurred background, sharp in center, fade out
         if (content) {
-          const fadeIn = clamp((progress - 0.6) / 0.1, 0, 1)
-          const fadeOut = clamp((progress - 0.8) / 0.15, 0, 1)
+          const fadeIn = clamp((progress - T.textInStart) / (T.textInEnd - T.textInStart), 0, 1)
+          const fadeOut = clamp((progress - T.textOutStart) / (T.textOutEnd - T.textOutStart), 0, 1)
           const opacity = Math.max(0, Math.min(fadeIn, 1 - fadeOut))
           const exitDir = i % 2 === 0 ? -1 : 1
           content.style.opacity = String(opacity)
