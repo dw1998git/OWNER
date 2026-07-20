@@ -32,12 +32,17 @@
               class="skill-card"
               :style="{ transitionDelay: index * 100 + 'ms' }"
             >
-              <PixelCard variant="blue">
+              <SkillCard
+                :animated="true"
+                :active="activeCardIndex === index"
+                :is-mobile="isMobile"
+                @toggle="onCardToggle(index)"
+              >
                 <div class="skill-content">
                   <h4 class="skill-name">{{ skill.name }}</h4>
                   <p class="skill-desc">{{ skill.desc }}</p>
                 </div>
-              </PixelCard>
+              </SkillCard>
             </div>
           </div>
         </div>
@@ -47,13 +52,33 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { skills } from '../data/skills.js'
-import PixelCard from './PixelCard.vue'
+import SkillCard from './SkillCard.vue'
 
 const videoRef = ref(null)
+const isMobile = ref(false)
+const activeCardIndex = ref(null)
+
+let deviceMq = null
+
+const checkDevice = () => {
+  isMobile.value = !window.matchMedia('(hover: hover) and (pointer: fine)').matches
+}
+
+const onCardToggle = (index) => {
+  if (activeCardIndex.value === index) {
+    activeCardIndex.value = null
+  } else {
+    activeCardIndex.value = index
+  }
+}
 
 onMounted(() => {
+  checkDevice()
+  deviceMq = window.matchMedia('(hover: hover) and (pointer: fine)')
+  deviceMq.addEventListener('change', checkDevice)
+
   const tryPlay = () => {
     if (videoRef.value) {
       videoRef.value.play().catch(() => {
@@ -64,6 +89,12 @@ onMounted(() => {
     }
   }
   tryPlay()
+})
+
+onUnmounted(() => {
+  if (deviceMq) {
+    deviceMq.removeEventListener('change', checkDevice)
+  }
 })
 </script>
 
@@ -188,13 +219,7 @@ onMounted(() => {
   margin-top: 10px;
   line-height: 1.7;
 }
-.skill-level {
-  font-size: var(--text-base);
-  color: var(--color-text-secondary);
-  margin-top: 10px;
-  font-family: var(--font-mono);
-  font-weight: var(--font-semibold);
-}
+
 
 @media (max-width: 1023px) {
   .video-fade-left {
