@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useBorderGlow } from '../composables/useBorderGlow.js'
 
 const props = defineProps({
@@ -51,6 +51,26 @@ const isActive = computed(() => {
   if (props.isMobile) return props.active
   return false
 })
+
+// 移动端跑马灯动画
+const marqueeAngle = ref(0)
+let marqueeRaf = null
+
+const startMarquee = () => {
+  const speed = 0.6 // 每帧旋转度数
+  const tick = () => {
+    marqueeAngle.value = (marqueeAngle.value + speed) % 360
+    marqueeRaf = requestAnimationFrame(tick)
+  }
+  marqueeRaf = requestAnimationFrame(tick)
+}
+
+const stopMarquee = () => {
+  if (marqueeRaf) {
+    cancelAnimationFrame(marqueeRaf)
+    marqueeRaf = null
+  }
+}
 
 const handleClick = () => {
   if (props.isMobile) {
@@ -100,7 +120,7 @@ const cardStyle = computed(() => ({
   '--glow-padding': `${props.glowRadius}px`,
   '--cone-spread': props.coneSpread,
   '--edge-proximity': isActive.value ? 100 : edgeProximity.value,
-  '--cursor-angle': isActive.value ? '45deg' : `${cursorAngle.value}deg`,
+  '--cursor-angle': isActive.value ? `${marqueeAngle.value}deg` : `${cursorAngle.value}deg`,
   ...glowVars.value,
   ...gradientVars.value
 }))
@@ -112,9 +132,19 @@ onMounted(() => {
 })
 
 watch(() => props.active, (val) => {
-  if (val && props.isMobile) {
-    edgeProximity.value = 100
+  if (props.isMobile) {
+    if (val) {
+      edgeProximity.value = 100
+      startMarquee()
+    } else {
+      stopMarquee()
+      edgeProximity.value = 0
+    }
   }
+})
+
+onUnmounted(() => {
+  stopMarquee()
 })
 </script>
 
