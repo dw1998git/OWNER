@@ -21,7 +21,7 @@ import { useBorderGlow } from '../composables/useBorderGlow.js'
 
 const props = defineProps({
   glowColor: { type: String, default: '200 80 60' },
-  backgroundColor: { type: String, default: '#0f0f1a' },
+  backgroundColor: { type: String, default: 'transparent' },
   borderRadius: { type: Number, default: 28 },
   glowRadius: { type: Number, default: 40 },
   glowIntensity: { type: Number, default: 1.0 },
@@ -136,7 +136,7 @@ watch(() => props.active, (val) => {
   transform: translate3d(0, 0, 0.01px);
   display: grid;
   border: 1px solid rgb(255 255 255 / 15%);
-  background: var(--card-bg, #0f0f1a);
+  background: var(--card-bg, transparent);
   overflow: visible;
   box-shadow:
     rgba(0, 0, 0, 0.1) 0px 1px 2px,
@@ -177,7 +177,7 @@ watch(() => props.active, (val) => {
 .border-glow-card::before {
   border: 1px solid transparent;
   background:
-    linear-gradient(var(--card-bg, #0f0f1a) 0 100%) padding-box,
+    linear-gradient(var(--card-bg, transparent) 0 100%) padding-box,
     linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,
     var(--gradient-one, radial-gradient(at 80% 55%, hsla(268, 100%, 76%, 1) 0px, transparent 50%)) border-box,
     var(--gradient-two, radial-gradient(at 69% 34%, hsla(349, 100%, 74%, 1) 0px, transparent 50%)) border-box,
