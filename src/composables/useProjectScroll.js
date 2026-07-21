@@ -36,7 +36,7 @@ export function useProjectScroll() {
 
       for (let i = 0; i < sections.length; i++) {
         const s = sections[i]
-        const img = s.querySelector('.apple-project-image-wrap img')
+        const img = s.querySelector('.apple-project-image-wrap .project-image-main') || s.querySelector('.apple-project-image-wrap img')
         const content = s.querySelector('.apple-project-content')
         if (!img) continue
 

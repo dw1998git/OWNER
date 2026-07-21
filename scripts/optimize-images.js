@@ -63,13 +63,13 @@ async function main() {
     // 生成 640w
     await sharp(srcPath)
       .resize(640)
-      .webp({ quality: 75 })
+      .webp({ quality: 70 })
       .toFile(out640)
 
-    // 生成 1280w
+    // 生成 1280w（降低质量以减小体积）
     await sharp(srcPath)
       .resize(1280)
-      .webp({ quality: 80 })
+      .webp({ quality: 65 })
       .toFile(out1280)
 
     manifest[stem] = {

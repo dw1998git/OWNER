@@ -4,13 +4,27 @@
     :data-project="project.id"
   >
     <div class="apple-project-image-wrap">
+      <!-- LQIP 模糊占位图 -->
+      <img
+        v-if="imageManifest?.placeholder"
+        :src="imageManifest.placeholder"
+        alt=""
+        aria-hidden="true"
+        class="project-image-placeholder"
+        :class="{ 'placeholder-hidden': imageLoaded }"
+      >
       <img
         v-if="imageManifest"
+        ref="mainImgRef"
         :src="`/images/${project.imageKey}-1280w.webp`"
         :srcset="imageManifest.srcset"
         :sizes="imageManifest.sizes"
         :alt="project.title"
+        loading="lazy"
         decoding="async"
+        class="project-image-main"
+        :class="{ 'image-visible': imageLoaded }"
+        @load="onImageLoad"
       >
       <img
         v-else
@@ -47,6 +61,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
 defineProps({
   project: {
     type: Object,
@@ -57,9 +73,43 @@ defineProps({
     default: null
   }
 })
+
+const imageLoaded = ref(false)
+
+const onImageLoad = () => {
+  imageLoaded.value = true
+}
 </script>
 
 <style scoped>
+/* LQIP 占位图 */
+.project-image-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(20px);
+  transform: scale(1.1);
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+.project-image-placeholder.placeholder-hidden {
+  opacity: 0;
+}
+
+/* 主图 */
+.project-image-main {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.project-image-main.image-visible {
+  opacity: 1;
+}
+
 .project-header {
   display: flex;
   align-items: center;
