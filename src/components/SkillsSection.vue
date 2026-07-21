@@ -180,7 +180,8 @@ onUnmounted(() => {
   overflow: hidden;
 }
 .skill-card {
-  /* PixelCard 自带样式 */
+  width: 100%;
+  min-width: 0;
 }
 
 @media (min-width: 1024px) {
@@ -194,9 +195,6 @@ onUnmounted(() => {
   }
 }
 .skill-content {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   padding: 24px;
@@ -205,7 +203,6 @@ onUnmounted(() => {
   justify-content: center;
   align-items: center;
   text-align: center;
-  z-index: 10;
 }
 .skill-name {
   font-size: var(--text-xl);
