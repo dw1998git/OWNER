@@ -40,11 +40,11 @@
           <h3 class="project-title">
             <ParticleText
               :text="project.title"
-              :font-size="'clamp(2rem, 4vw, 3rem)'"
+              :font-size="'clamp(2.75rem, 5vw, 4rem)'"
               :font-weight="700"
               color="#ffffff"
               highlight-color="#ffffff"
-              :particle-size="2"
+              :particle-size="2.5"
               :density="1"
               :scatter="60"
               :pointer-repel="15"
@@ -93,18 +93,18 @@
         >
           <ParticleText
             :text="splitDescription(desc)"
-            :font-size="'clamp(1.375rem, 2.5vw, 1.625rem)'"
+            :font-size="'clamp(1.75rem, 3vw, 2.25rem)'"
             :font-weight="400"
             color="#ffffff"
             highlight-color="#ffffff"
-            :particle-size="2.5"
+            :particle-size="3.5"
             :density="1"
             :scatter="10"
             :pointer-repel="0"
             :repel-radius="0"
             :glow="false"
             trigger="hover"
-            :line-height="1.6"
+            :line-height="1.5"
             class-name="project-desc-particle__inner"
           />
         </p>
@@ -191,7 +191,7 @@ const splitDescription = (html) => {
   margin-bottom: 18px;
 }
 .project-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.75rem, 5vw, 4rem);
   font-weight: var(--font-bold);
   color: #ffffff;
   text-shadow: 0 2px 24px rgba(0,0,0,0.85);
@@ -214,18 +214,18 @@ const splitDescription = (html) => {
   text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
 .project-desc {
-  font-size: clamp(1.375rem, 2.5vw, 1.625rem);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
   color: #ffffff;
-  line-height: 1.6;
+  line-height: 1.5;
   text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.5);
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 .project-desc:last-of-type {
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 .project-desc-particle__inner {
   filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
-  min-height: 2.5em;
+  min-height: 3em;
 }
 .project-date-text {
   font-family: var(--font-mono);
@@ -235,9 +235,9 @@ const splitDescription = (html) => {
   text-shadow: 0 1px 10px rgba(0,0,0,0.8);
 }
 .project-text {
-  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.45) 100%);
   border-radius: 20px;
-  padding: 32px;
+  padding: 48px;
 }
 .project-tags {
   display: flex;
