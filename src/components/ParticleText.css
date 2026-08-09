@@ -32,7 +32,7 @@
 
 .particle-text__ghost {
   visibility: hidden;
-  white-space: nowrap;
+  white-space: pre-line;
   pointer-events: none;
   user-select: none;
 }

@@ -44,8 +44,8 @@
               :font-weight="700"
               color="#ffffff"
               highlight-color="#ffffff"
-              :particle-size="3"
-              :density="2"
+              :particle-size="2"
+              :density="1"
               :scatter="60"
               :pointer-repel="15"
               :repel-radius="60"
@@ -60,8 +60,8 @@
               :font-weight="600"
               color="#4fc3f7"
               highlight-color="#4fc3f7"
-              :particle-size="2"
-              :density="2"
+              :particle-size="1.5"
+              :density="1"
               :scatter="20"
               :pointer-repel="0"
               :repel-radius="0"
@@ -70,13 +70,43 @@
             />
           </span>
         </div>
-        <p class="project-date-text">{{ project.date }}</p>
+        <p class="project-date-text">
+          <ParticleText
+            :text="project.date"
+            :font-size="'var(--text-lg)'"
+            :font-weight="400"
+            color="rgba(255,255,255,0.85)"
+            highlight-color="rgba(255,255,255,0.85)"
+            :particle-size="1.5"
+            :density="2"
+            :scatter="15"
+            :pointer-repel="0"
+            :repel-radius="0"
+            :glow="false"
+            trigger="hover"
+          />
+        </p>
         <p
           v-for="(desc, i) in project.descriptions"
           :key="i"
           class="project-desc"
-          style="white-space: pre-line;"
-        >{{ splitDescription(desc) }}</p>
+        >
+          <ParticleText
+            :text="splitDescription(desc)"
+            :font-size="'clamp(1.125rem, 2vw, 1.375rem)'"
+            :font-weight="400"
+            color="#ffffff"
+            highlight-color="#ffffff"
+            :particle-size="1.5"
+            :density="2"
+            :scatter="15"
+            :pointer-repel="0"
+            :repel-radius="0"
+            :glow="false"
+            trigger="hover"
+            :line-height="2"
+          />
+        </p>
         <div class="project-tags stagger-group">
           <span
             v-for="(tag, i) in project.tags"
