@@ -37,77 +37,16 @@
     <div class="apple-project-content">
       <div class="project-text">
         <div class="project-header">
-          <h3 class="project-title">
-            <ParticleText
-              :text="project.title"
-              :font-size="'clamp(2.75rem, 5vw, 4rem)'"
-              :font-weight="700"
-              color="#ffffff"
-              highlight-color="#ffffff"
-              :particle-size="2.5"
-              :density="1"
-              :scatter="60"
-              :pointer-repel="15"
-              :repel-radius="60"
-              :glow="false"
-              trigger="hover"
-            />
-          </h3>
-          <span class="role-badge">
-            <ParticleText
-              :text="project.role"
-              :font-size="'var(--text-xs)'"
-              :font-weight="600"
-              color="#4fc3f7"
-              highlight-color="#4fc3f7"
-              :particle-size="1.5"
-              :density="1"
-              :scatter="20"
-              :pointer-repel="0"
-              :repel-radius="0"
-              :glow="false"
-              trigger="hover"
-            />
-          </span>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <span class="role-badge">{{ project.role }}</span>
         </div>
-        <p class="project-date-text">
-          <ParticleText
-            :text="project.date"
-            :font-size="'var(--text-lg)'"
-            :font-weight="400"
-            color="rgba(255,255,255,0.85)"
-            highlight-color="rgba(255,255,255,0.85)"
-            :particle-size="1.5"
-            :density="2"
-            :scatter="15"
-            :pointer-repel="0"
-            :repel-radius="0"
-            :glow="false"
-            trigger="hover"
-          />
-        </p>
+        <p class="project-date">{{ project.date }}</p>
         <p
           v-for="(desc, i) in project.descriptions"
           :key="i"
-          class="project-desc project-desc-particle"
-        >
-          <ParticleText
-            :text="splitDescription(desc)"
-            :font-size="'clamp(1.75rem, 3vw, 2.25rem)'"
-            :font-weight="400"
-            color="#ffffff"
-            highlight-color="#ffffff"
-            :particle-size="3.5"
-            :density="1"
-            :scatter="10"
-            :pointer-repel="0"
-            :repel-radius="0"
-            :glow="false"
-            trigger="hover"
-            :line-height="1.5"
-            class-name="project-desc-particle__inner"
-          />
-        </p>
+          class="project-desc"
+          v-html="desc"
+        ></p>
         <div class="project-tags stagger-group">
           <span
             v-for="(tag, i) in project.tags"
@@ -123,7 +62,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import ParticleText from './ParticleText.vue'
 
 defineProps({
   project: {
@@ -141,17 +79,6 @@ const imageLoaded = ref(false)
 const onImageLoad = () => {
   imageLoaded.value = true
 }
-
-const splitDescription = (html) => {
-  const plain = String(html || '').replace(/<[^>]+>/g, '')
-  return plain
-    .replace(/([。！？；])/g, '$1\n')
-    .split('\n')
-    .map(line => line.trim())
-    .filter(line => line.length > 0)
-    .join('\n')
-}
-
 </script>
 
 <style scoped>
@@ -191,20 +118,11 @@ const splitDescription = (html) => {
   margin-bottom: 18px;
 }
 .project-title {
-  font-size: clamp(2.75rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: var(--font-bold);
   color: #ffffff;
   text-shadow: 0 2px 24px rgba(0,0,0,0.85);
   letter-spacing: -0.01em;
-  flex: 0 0 auto;
-  min-width: max-content;
-  max-width: 100%;
-  line-height: 1.2;
-}
-.role-badge {
-  flex: 0 0 auto;
-  min-width: max-content;
-  vertical-align: middle;
 }
 .project-date {
   font-family: var(--font-mono);
@@ -214,30 +132,14 @@ const splitDescription = (html) => {
   text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
 .project-desc {
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
   color: #ffffff;
-  line-height: 1.5;
+  line-height: 2;
   text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.5);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .project-desc:last-of-type {
-  margin-bottom: 36px;
-}
-.project-desc-particle__inner {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
-  min-height: 3em;
-}
-.project-date-text {
-  font-family: var(--font-mono);
-  font-size: var(--text-lg);
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 24px;
-  text-shadow: 0 1px 10px rgba(0,0,0,0.8);
-}
-.project-text {
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.45) 100%);
-  border-radius: 20px;
-  padding: 48px;
+  margin-bottom: 28px;
 }
 .project-tags {
   display: flex;

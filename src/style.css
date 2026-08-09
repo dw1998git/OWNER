@@ -537,7 +537,7 @@ body {
 
 /* Project text area - no background, direct on blurred image */
 .project-text {
-  max-width: 1100px;
+  max-width: 720px;
   width: 100%;
   padding: 40px 0;
 }
