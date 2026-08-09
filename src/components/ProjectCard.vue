@@ -37,16 +37,73 @@
     <div class="apple-project-content">
       <div class="project-text">
         <div class="project-header">
-          <h3 class="project-title">{{ project.title }}</h3>
-          <span class="role-badge">{{ project.role }}</span>
+          <h3 class="project-title" style="height: clamp(2.4rem, 4.8vw, 3.6rem);">
+            <ParticleText
+              :text="project.title"
+              :font-size="'clamp(2rem, 4vw, 3rem)'"
+              :font-weight="700"
+              color="#ffffff"
+              highlight-color="#ffffff"
+              :particle-size="1.5"
+              :density="4"
+              :scatter="120"
+              :pointer-repel="20"
+              :repel-radius="80"
+              trigger="hover"
+            />
+          </h3>
+          <span class="role-badge" style="display: inline-flex; height: 1.4em; align-items: center;">
+            <ParticleText
+              :text="project.role"
+              :font-size="'var(--text-xs)'"
+              :font-weight="500"
+              color="#0071e3"
+              highlight-color="#0071e3"
+              :particle-size="1"
+              :density="6"
+              :scatter="40"
+              :pointer-repel="0"
+              :repel-radius="0"
+              trigger="hover"
+            />
+          </span>
         </div>
-        <p class="project-date">{{ project.date }}</p>
-        <p
+        <p class="project-date" style="height: 1.4em;">
+          <ParticleText
+            :text="project.date"
+            :font-size="'var(--text-lg)'"
+            :font-weight="400"
+            color="rgba(255,255,255,0.75)"
+            highlight-color="rgba(255,255,255,0.75)"
+            :particle-size="1.2"
+            :density="5"
+            :scatter="60"
+            :pointer-repel="0"
+            :repel-radius="0"
+            trigger="hover"
+          />
+        </p>
+        <div
           v-for="(desc, i) in project.descriptions"
           :key="i"
           class="project-desc"
-          v-html="desc"
-        ></p>
+          :style="{ height: `calc(clamp(1.125rem, 2vw, 1.375rem) * 2 * ${descLineCount(desc)})` }"
+        >
+          <ParticleText
+            :text="splitDescription(desc)"
+            :font-size="'clamp(1.125rem, 2vw, 1.375rem)'"
+            :font-weight="400"
+            color="#ffffff"
+            highlight-color="#ffffff"
+            :particle-size="1.2"
+            :density="6"
+            :scatter="80"
+            :pointer-repel="0"
+            :repel-radius="0"
+            trigger="hover"
+            :line-height="2"
+          />
+        </div>
         <div class="project-tags stagger-group">
           <span
             v-for="(tag, i) in project.tags"
@@ -62,6 +119,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import ParticleText from './ParticleText.vue'
 
 defineProps({
   project: {
@@ -78,6 +136,21 @@ const imageLoaded = ref(false)
 
 const onImageLoad = () => {
   imageLoaded.value = true
+}
+
+const splitDescription = (html) => {
+  const plain = String(html || '').replace(/<[^>]+>/g, '')
+  return plain
+    .replace(/([。！？；])/g, '$1\n')
+    .split('\n')
+    .map(line => line.trim())
+    .filter(line => line.length > 0)
+    .join('\n')
+}
+
+const descLineCount = (html) => {
+  const formatted = splitDescription(html)
+  return formatted ? formatted.split('\n').length : 1
 }
 </script>
 
