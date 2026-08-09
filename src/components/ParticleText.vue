@@ -299,7 +299,7 @@ onMounted(() => {
 
     const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height)
     const targets = []
-    const step = Math.max(2, Math.floor(props.density))
+    const step = Math.max(1, Math.floor(props.density))
 
     for (let y = 0; y < offscreen.height; y += step) {
       for (let x = 0; x < offscreen.width; x += step) {

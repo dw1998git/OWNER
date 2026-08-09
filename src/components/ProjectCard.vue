@@ -89,9 +89,25 @@
         <p
           v-for="(desc, i) in project.descriptions"
           :key="i"
-          class="project-desc"
-          v-html="desc"
-        ></p>
+          class="project-desc project-desc-particle"
+        >
+          <ParticleText
+            :text="splitDescription(desc)"
+            :font-size="'clamp(1.375rem, 2.5vw, 1.625rem)'"
+            :font-weight="400"
+            color="#ffffff"
+            highlight-color="#ffffff"
+            :particle-size="2.5"
+            :density="1"
+            :scatter="10"
+            :pointer-repel="0"
+            :repel-radius="0"
+            :glow="false"
+            trigger="hover"
+            :line-height="1.6"
+            class-name="project-desc-particle__inner"
+          />
+        </p>
         <div class="project-tags stagger-group">
           <span
             v-for="(tag, i) in project.tags"
@@ -124,6 +140,16 @@ const imageLoaded = ref(false)
 
 const onImageLoad = () => {
   imageLoaded.value = true
+}
+
+const splitDescription = (html) => {
+  const plain = String(html || '').replace(/<[^>]+>/g, '')
+  return plain
+    .replace(/([。！？；])/g, '$1\n')
+    .split('\n')
+    .map(line => line.trim())
+    .filter(line => line.length > 0)
+    .join('\n')
 }
 
 </script>
@@ -188,14 +214,18 @@ const onImageLoad = () => {
   text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
 .project-desc {
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-size: clamp(1.375rem, 2.5vw, 1.625rem);
   color: #ffffff;
-  line-height: 2;
+  line-height: 1.6;
   text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.5);
   margin-bottom: 24px;
 }
 .project-desc:last-of-type {
   margin-bottom: 28px;
+}
+.project-desc-particle__inner {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
+  min-height: 2.5em;
 }
 .project-date-text {
   font-family: var(--font-mono);
