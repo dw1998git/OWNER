@@ -37,73 +37,46 @@
     <div class="apple-project-content">
       <div class="project-text">
         <div class="project-header">
-          <h3 class="project-title" style="height: clamp(2.4rem, 4.8vw, 3.6rem);">
+          <h3 class="project-title">
             <ParticleText
               :text="project.title"
               :font-size="'clamp(2rem, 4vw, 3rem)'"
               :font-weight="700"
               color="#ffffff"
               highlight-color="#ffffff"
-              :particle-size="1.5"
-              :density="4"
-              :scatter="120"
-              :pointer-repel="20"
-              :repel-radius="80"
+              :particle-size="3"
+              :density="2"
+              :scatter="60"
+              :pointer-repel="15"
+              :repel-radius="60"
+              :glow="false"
               trigger="hover"
             />
           </h3>
-          <span class="role-badge" style="display: inline-flex; height: 1.4em; align-items: center;">
+          <span class="role-badge">
             <ParticleText
               :text="project.role"
               :font-size="'var(--text-xs)'"
-              :font-weight="500"
-              color="#0071e3"
-              highlight-color="#0071e3"
-              :particle-size="1"
-              :density="6"
-              :scatter="40"
+              :font-weight="600"
+              color="#4fc3f7"
+              highlight-color="#4fc3f7"
+              :particle-size="2"
+              :density="2"
+              :scatter="20"
               :pointer-repel="0"
               :repel-radius="0"
+              :glow="false"
               trigger="hover"
             />
           </span>
         </div>
-        <p class="project-date" style="height: 1.4em;">
-          <ParticleText
-            :text="project.date"
-            :font-size="'var(--text-lg)'"
-            :font-weight="400"
-            color="rgba(255,255,255,0.75)"
-            highlight-color="rgba(255,255,255,0.75)"
-            :particle-size="1.2"
-            :density="5"
-            :scatter="60"
-            :pointer-repel="0"
-            :repel-radius="0"
-            trigger="hover"
-          />
-        </p>
-        <div
+        <p class="project-date-text">{{ project.date }}</p>
+        <p
           v-for="(desc, i) in project.descriptions"
           :key="i"
           class="project-desc"
-          :style="{ height: `calc(clamp(1.125rem, 2vw, 1.375rem) * 2 * ${descLineCount(desc)})` }"
-        >
-          <ParticleText
-            :text="splitDescription(desc)"
-            :font-size="'clamp(1.125rem, 2vw, 1.375rem)'"
-            :font-weight="400"
-            color="#ffffff"
-            highlight-color="#ffffff"
-            :particle-size="1.2"
-            :density="6"
-            :scatter="80"
-            :pointer-repel="0"
-            :repel-radius="0"
-            trigger="hover"
-            :line-height="2"
-          />
-        </div>
+          style="white-space: pre-line;"
+        >{{ splitDescription(desc) }}</p>
         <div class="project-tags stagger-group">
           <span
             v-for="(tag, i) in project.tags"
@@ -148,10 +121,6 @@ const splitDescription = (html) => {
     .join('\n')
 }
 
-const descLineCount = (html) => {
-  const formatted = splitDescription(html)
-  return formatted ? formatted.split('\n').length : 1
-}
 </script>
 
 <style scoped>
@@ -196,6 +165,15 @@ const descLineCount = (html) => {
   color: #ffffff;
   text-shadow: 0 2px 24px rgba(0,0,0,0.85);
   letter-spacing: -0.01em;
+  flex: 0 0 auto;
+  min-width: max-content;
+  max-width: 100%;
+  line-height: 1.2;
+}
+.role-badge {
+  flex: 0 0 auto;
+  min-width: max-content;
+  vertical-align: middle;
 }
 .project-date {
   font-family: var(--font-mono);
@@ -213,6 +191,18 @@ const descLineCount = (html) => {
 }
 .project-desc:last-of-type {
   margin-bottom: 28px;
+}
+.project-date-text {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 24px;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.8);
+}
+.project-text {
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0) 100%);
+  border-radius: 20px;
+  padding: 32px;
 }
 .project-tags {
   display: flex;

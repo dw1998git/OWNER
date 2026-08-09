@@ -8,6 +8,7 @@
   >
     <canvas ref="canvasRef" class="particle-text__canvas" aria-hidden="true" />
     <span class="particle-text__sr">{{ plainText }}</span>
+    <span class="particle-text__ghost" aria-hidden="true">{{ plainText }}</span>
   </div>
 </template>
 
