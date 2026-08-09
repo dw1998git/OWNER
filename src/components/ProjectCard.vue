@@ -90,23 +90,8 @@
           v-for="(desc, i) in project.descriptions"
           :key="i"
           class="project-desc"
-        >
-          <ParticleText
-            :text="splitDescription(desc)"
-            :font-size="'clamp(1.125rem, 2vw, 1.375rem)'"
-            :font-weight="400"
-            color="#ffffff"
-            highlight-color="#ffffff"
-            :particle-size="1.5"
-            :density="2"
-            :scatter="15"
-            :pointer-repel="0"
-            :repel-radius="0"
-            :glow="false"
-            trigger="hover"
-            :line-height="2"
-          />
-        </p>
+          v-html="desc"
+        ></p>
         <div class="project-tags stagger-group">
           <span
             v-for="(tag, i) in project.tags"
@@ -139,16 +124,6 @@ const imageLoaded = ref(false)
 
 const onImageLoad = () => {
   imageLoaded.value = true
-}
-
-const splitDescription = (html) => {
-  const plain = String(html || '').replace(/<[^>]+>/g, '')
-  return plain
-    .replace(/([。！？；])/g, '$1\n')
-    .split('\n')
-    .map(line => line.trim())
-    .filter(line => line.length > 0)
-    .join('\n')
 }
 
 </script>
