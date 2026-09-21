@@ -2,15 +2,15 @@
   <!-- 经历内容已全部由右上角 3D 工牌承载，此处仅保留零高度的导航锚点 -->
   <div id="experience"></div>
 
-  <!-- 固定在页面右上角的 3D 工牌：向下滚动时与页面滚动联动向上收起 -->
+  <!-- 桌面端固定在页面右上角并随滚动向上收起；移动端内嵌到文档流，避免浮层遮挡正文 -->
   <div
     v-if="cardFaceImage"
     class="lanyard-fixed-stage"
-    :class="{ 'is-retracted': retract >= 1 }"
-    :style="{ transform: `translateY(${(-retract * 100).toFixed(2)}%)` }"
+    :class="{ 'is-retracted': !isMobile && retract >= 1 }"
+    :style="isMobile ? null : { transform: `translateY(${(-retract * 100).toFixed(2)}%)` }"
   >
     <ReactLanyard
-      :position="[-2.9, 0, 22]"
+      :position="isMobile ? [-0.7, 0.98, 7.5] : [-2.9, 0, 22]"
       :gravity="[0, -40, 0]"
       :fov="20"
       :transparent="true"
@@ -33,6 +33,9 @@ const workItems = [
 ]
 
 const cardFaceImage = ref(null)
+// 移动端改为文档流布局，不做固定浮层，避免遮挡正文
+const isMobile = ref(false)
+let mobileMq = null
 
 // 0 = 完全展开，1 = 完全收起
 const retract = ref(0)
@@ -51,6 +54,10 @@ const updateRetract = () => {
 const onScroll = () => {
   if (ticking) return
   ticking = requestAnimationFrame(updateRetract)
+}
+
+const syncMobile = (e) => {
+  isMobile.value = e.matches
 }
 
 function generateCardFace() {
@@ -148,6 +155,10 @@ function generateCardFace() {
 }
 
 onMounted(() => {
+  mobileMq = window.matchMedia('(max-width: 768px)')
+  isMobile.value = mobileMq.matches
+  mobileMq.addEventListener('change', syncMobile)
+
   cardFaceImage.value = generateCardFace()
   updateRetract()
   window.addEventListener('scroll', onScroll, { passive: true })
@@ -155,6 +166,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  if (mobileMq) mobileMq.removeEventListener('change', syncMobile)
   window.removeEventListener('scroll', onScroll)
   window.removeEventListener('resize', onScroll)
   if (ticking) cancelAnimationFrame(ticking)
@@ -192,23 +204,20 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 768px) {
+  /* 移动端改为文档流内嵌区块：不再浮动，不会遮挡正文，卡片居中展示 */
   .lanyard-fixed-stage {
-    width: 600px;
-    height: 800px;
-    top: 0;
-    right: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .lanyard-fixed-stage {
-    width: 480px;
-    height: 660px;
-    top: 0;
-    right: 0;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    height: 140vw;
+    z-index: 1;
+    will-change: auto;
   }
   .lanyard-corner-hint {
-    display: none;
+    bottom: 4px;
+    right: 8px;
+    font-size: 11px;
   }
 }
 </style>

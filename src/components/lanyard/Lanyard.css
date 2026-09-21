@@ -10,3 +10,9 @@
   transform: scale(1);
   transform-origin: center;
 }
+
+/* 画布默认 touch-action: none 会吞掉触摸滑动，导致移动端页面无法滚动，
+   这里放开纵向手势，横向拖动仍交给 3D 交互 */
+.lanyard-wrapper canvas {
+  touch-action: pan-y !important;
+}
