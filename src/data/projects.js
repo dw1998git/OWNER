@@ -41,7 +41,7 @@ export const projects = [
     id: 3,
     title: '理想汽车自动充电机器人项目',
     role: '核心成员',
-    date: '2025.05 - 2025.04',
+    date: '2025.04 - 2025.05',
     image: projChargingRobotUrl,
     imageKey: 'proj-charging-robot',
     descriptions: [
