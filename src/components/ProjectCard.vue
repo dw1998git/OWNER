@@ -1,69 +1,83 @@
 <template>
-  <div
-    class="apple-project-section"
+  <article
+    class="project-showcase reveal"
     :data-project="project.id"
   >
-    <div class="apple-project-image-wrap">
-      <!-- LQIP 模糊占位图 -->
-      <img
-        v-if="imageManifest?.placeholder"
-        :src="imageManifest.placeholder"
-        alt=""
-        aria-hidden="true"
-        class="project-image-placeholder"
-        :class="{ 'placeholder-hidden': imageLoaded }"
+    <div class="project-figure" :class="{ 'is-duo': figures.length > 1 }">
+      <div
+        v-for="(figure, i) in figures"
+        :key="figure.key || i"
+        class="project-frame"
       >
-      <img
-        v-if="imageManifest"
-        ref="mainImgRef"
-        :src="`/images/${project.imageKey}-1280w.webp`"
-        :srcset="imageManifest.srcset"
-        :sizes="imageManifest.sizes"
-        :alt="project.title"
-        loading="lazy"
-        decoding="async"
-        class="project-image-main"
-        :class="{ 'image-visible': imageLoaded }"
-        @load="onImageLoad"
-      >
-      <img
-        v-else
-        :src="project.image"
-        :alt="project.title"
-        loading="lazy"
-        decoding="async"
-      >
-    </div>
-    <div class="apple-project-content">
-      <div class="project-text">
-        <div class="project-header">
-          <h3 class="project-title">{{ project.title }}</h3>
-          <span class="role-badge">{{ project.role }}</span>
-        </div>
-        <p class="project-date">{{ project.date }}</p>
-        <p
-          v-for="(desc, i) in project.descriptions"
-          :key="i"
-          class="project-desc"
-          v-html="desc"
-        ></p>
-        <div class="project-tags stagger-group">
-          <span
-            v-for="(tag, i) in project.tags"
-            :key="tag"
-            class="tech-tag tag-pop stagger-item"
-            :style="{ transitionDelay: i * 80 + 'ms' }"
-          >{{ tag }}</span>
-        </div>
+        <img
+          v-if="figure.manifest?.placeholder"
+          :src="figure.manifest.placeholder"
+          alt=""
+          aria-hidden="true"
+          class="project-image project-image--lqip"
+          :class="{ 'is-hidden': loaded[i] }"
+        >
+        <img
+          v-if="figure.manifest"
+          :src="`/images/${figure.key}-1280w.webp`"
+          :srcset="figure.manifest.srcset"
+          :sizes="figure.manifest.sizes"
+          :alt="`${project.title} 展示图 ${i + 1}`"
+          loading="lazy"
+          decoding="async"
+          class="project-image"
+          @load="loaded[i] = true"
+        >
+        <img
+          v-else-if="figure.src"
+          :src="figure.src"
+          :alt="`${project.title} 展示图 ${i + 1}`"
+          loading="lazy"
+          decoding="async"
+          class="project-image"
+          @load="loaded[i] = true"
+        >
       </div>
     </div>
-  </div>
+
+    <div class="project-copy">
+      <p class="project-eyebrow">
+        <span class="project-role">{{ project.role }}</span>
+        <span class="project-eyebrow-sep" aria-hidden="true"></span>
+        <span class="project-date">{{ project.date }}</span>
+      </p>
+
+      <h3 class="project-title">{{ project.title }}</h3>
+
+      <p
+        v-for="(desc, i) in project.descriptions"
+        :key="i"
+        class="project-desc"
+        v-html="desc"
+      ></p>
+
+      <ul v-if="project.tags && project.tags.length" class="project-tags">
+        <li v-for="tag in project.tags" :key="tag" class="project-tag">{{ tag }}</li>
+      </ul>
+
+      <a
+        v-if="project.link"
+        class="project-link"
+        :href="project.link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        查看项目源码
+        <span class="project-link__arrow" aria-hidden="true">&rsaquo;</span>
+      </a>
+    </div>
+  </article>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-defineProps({
+const props = defineProps({
   project: {
     type: Object,
     required: true
@@ -74,76 +88,199 @@ defineProps({
   }
 })
 
-const imageLoaded = ref(false)
+const loaded = ref([])
 
-const onImageLoad = () => {
-  imageLoaded.value = true
-}
+const figures = computed(() => {
+  const entries = [
+    { key: props.project.imageKey, src: props.project.image },
+    { key: props.project.imageKeyAlt, src: props.project.imageAlt }
+  ]
+
+  return entries
+    .filter(entry => entry.key || entry.src)
+    .map(entry => ({
+      key: entry.key,
+      src: entry.src,
+      manifest: entry.key && props.imageManifest
+        ? props.imageManifest[entry.key] || null
+        : null
+    }))
+})
 </script>
 
 <style scoped>
-/* LQIP 占位图 */
-.project-image-placeholder {
+.project-showcase {
+  max-width: 1080px;
+  margin: 0 auto 88px;
+  background: var(--color-bg-elevated);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+.project-showcase:last-of-type {
+  margin-bottom: 0;
+}
+
+/* 展示图：苹果产品页式的大图，不带滚动动效 */
+.project-figure {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  background: var(--color-bg-section-alt);
+}
+.project-figure.is-duo {
+  grid-template-columns: 1fr 1fr;
+}
+.project-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-bg-section-alt);
+}
+.project-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  display: block;
+  transition: opacity 0.6s ease;
+}
+.project-image--lqip {
   filter: blur(20px);
-  transform: scale(1.1);
-  transition: opacity 0.5s ease;
-  z-index: 0;
+  transform: scale(1.06);
 }
-.project-image-placeholder.placeholder-hidden {
+.project-image--lqip.is-hidden {
   opacity: 0;
 }
 
-/* 主图 */
-.project-image-main {
-  position: relative;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+/* 文案区：居中、大标题、留白充足 */
+.project-copy {
+  padding: 56px 72px 64px;
+  text-align: center;
 }
-.project-image-main.image-visible {
-  opacity: 1;
-}
-
-.project-header {
+.project-eyebrow {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+.project-role {
+  color: var(--color-accent);
+  font-weight: var(--font-medium);
+}
+.project-eyebrow-sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.45;
 }
 .project-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
   font-weight: var(--font-bold);
-  color: #ffffff;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.85);
-  letter-spacing: -0.01em;
-}
-.project-date {
-  font-family: var(--font-mono);
-  font-size: var(--text-lg);
-  color: rgba(255,255,255,0.75);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  text-wrap: balance;
   margin-bottom: 24px;
-  text-shadow: 0 1px 10px rgba(0,0,0,0.7);
 }
 .project-desc {
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  color: #ffffff;
-  line-height: 2;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.5);
-  margin-bottom: 24px;
+  max-width: 720px;
+  margin: 0 auto 14px;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
 }
-.project-desc:last-of-type {
-  margin-bottom: 28px;
+.project-desc :deep(strong) {
+  color: var(--color-text-primary);
+  font-weight: var(--font-semibold);
 }
+
 .project-tags {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+}
+.project-tag {
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.01em;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 28px;
+  color: var(--color-accent);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  transition: opacity 0.16s ease;
+}
+.project-link:hover {
+  opacity: 0.75;
+}
+.project-link__arrow {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .project-showcase {
+    margin-bottom: 56px;
+    border-radius: 20px;
+  }
+  .project-figure.is-duo {
+    grid-template-columns: 1fr;
+  }
+  .project-copy {
+    padding: 36px 24px 40px;
+  }
+  .project-eyebrow {
+    font-size: var(--text-xs);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .project-title {
+    margin-bottom: 18px;
+  }
+  .project-desc {
+    font-size: 0.9375rem;
+    margin-bottom: 12px;
+  }
+  .project-tags {
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .project-tag {
+    padding: 6px 12px;
+    font-size: var(--text-xs);
+  }
+  .project-link {
+    margin-top: 22px;
+    font-size: var(--text-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-image {
+    transition: none;
+  }
 }
 </style>

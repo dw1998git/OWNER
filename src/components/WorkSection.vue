@@ -83,48 +83,48 @@ function generateCardFace() {
 
   // 标签文字
   ctx.fillStyle = '#30d5c8'
-  ctx.font = '600 18px "SF Mono","JetBrains Mono","Fira Code",monospace'
+  ctx.font = '600 19px "SF Mono","JetBrains Mono","Fira Code",monospace'
   ctx.textBaseline = 'top'
   ctx.textAlign = 'left'
-  ctx.fillText('WORK EXPERIENCE', 34, 40)
+  ctx.fillText('WORK EXPERIENCE', 34, 36)
 
   // 姓名
   ctx.fillStyle = '#ffffff'
-  ctx.font = '700 58px "SF Pro Display","Inter","Noto Sans SC",sans-serif'
-  ctx.fillText('王 伟', 34, 76)
+  ctx.font = '700 62px "SF Pro Display","Inter","Noto Sans SC",sans-serif'
+  ctx.fillText('王 伟', 34, 66)
 
   // 公司
   ctx.fillStyle = '#dcdce4'
-  ctx.font = '500 22px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
-  ctx.fillText('长广溪智能制造（无锡）有限公司', 34, 148)
+  ctx.font = '500 23px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
+  ctx.fillText('长广溪智能制造（无锡）有限公司', 34, 138)
 
   // 职位
   ctx.fillStyle = '#30d5c8'
-  ctx.font = '500 26px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
-  ctx.fillText('机器人应用工程师', 34, 184)
+  ctx.font = '500 28px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
+  ctx.fillText('机器人应用工程师', 34, 166)
 
   // 日期
   ctx.fillStyle = '#86868b'
-  ctx.font = '400 20px "SF Mono","JetBrains Mono",monospace'
-  ctx.fillText('2022.06 - 至今', 34, 224)
+  ctx.font = '400 21px "SF Mono","JetBrains Mono",monospace'
+  ctx.fillText('2022.06 - 至今', 34, 202)
 
   // 分割线
   ctx.strokeStyle = 'rgba(48,213,200,0.28)'
   ctx.lineWidth = 1
   ctx.beginPath()
-  ctx.moveTo(34, 264)
-  ctx.lineTo(W - 34, 264)
+  ctx.moveTo(34, 240)
+  ctx.lineTo(W - 34, 240)
   ctx.stroke()
 
   // 工作内容
-  ctx.font = '400 19px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
+  ctx.font = '400 23px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
   const maxWidth = W - 104
-  let y = 292
+  let y = 256
 
   workItems.forEach(item => {
     ctx.fillStyle = '#30d5c8'
     ctx.beginPath()
-    ctx.arc(44, y + 10, 4.5, 0, Math.PI * 2)
+    ctx.arc(44, y + 11, 5, 0, Math.PI * 2)
     ctx.fill()
 
     ctx.fillStyle = '#dcdce4'
@@ -140,7 +140,7 @@ function generateCardFace() {
       }
     }
     ctx.fillText(line, 62, y)
-    y += 38
+    y += 33
   })
 
   // 底部装饰
@@ -151,7 +151,7 @@ function generateCardFace() {
   ctx.fillRect(0, H - 56, W, 56)
 
   ctx.fillStyle = '#86868b'
-  ctx.font = '400 14px "SF Mono","JetBrains Mono",monospace'
+  ctx.font = '400 15px "SF Mono","JetBrains Mono",monospace'
   ctx.textAlign = 'center'
   ctx.fillText('ROBOTICS · VISION · AI', W / 2, H - 34)
   ctx.textAlign = 'left'

@@ -27,6 +27,13 @@
     "width": 1280,
     "height": 720
   },
+  "proj-hand": {
+    "srcset": "/images/proj-hand-640w.webp 640w, /images/proj-hand-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRloBAABXRUJQVlA4IE4BAAAQCACdASooACcAPqFAmkmmJCKhONtoAMAUCWUAxGHc+YaGebYSVfLLLQhnfKa+VJLMDbxfe1QtWr0PPQ1b6qTecmz1+wmdB9XgANSil7fAuuNO2YbCns+namepkl59Ty3GExEsrTtQ+Je3kephOkzHX9kfdNG8l3/+Q3dgBNP9XQFUZwVLXfHHOnh5LT1U5bQPSy2FEYzn7sZ5OdfX4F21P0mo3F5c6EMBNjwKGY/vqiVbaJ+qcX/GY7l9LxyZV9/9M18uOzqBCBc3BIPVHt2jOcgAsV/bjVmHH8Ql+tnbw9HoY2bK4X/T8DPcaZD7cR2fQsvjk9CkXDzzvvj/fYmVB0zGP9bYYvz23PHljQ9Kal8na79vu2A6vqyEKUEH0tg/XTYwpYH/OwA8uKOU/XCubNFLs8o6A/F24nXriD1Vv/6NSqs1KSkEVzIAAAAA",
+    "width": 1280,
+    "height": 720
+  },
   "proj-magna": {
     "srcset": "/images/proj-magna-640w.webp 640w, /images/proj-magna-1280w.webp 1280w",
     "sizes": "(max-width: 768px) 640px, 1280px",
@@ -45,6 +52,20 @@
     "srcset": "/images/proj-rail-grinding-640w.webp 640w, /images/proj-rail-grinding-1280w.webp 1280w",
     "sizes": "(max-width: 768px) 640px, 1280px",
     "placeholder": "data:image/webp;base64,UklGRpwBAABXRUJQVlA4IJABAADwCACdASooABoAPqU+mkmmIyKhNVv8AMAUiUAZfNbtst9tCgQ4CVvN2+PZFBaGumCzGlT8osNIH20RgMsa1AlGGGrT89OsAy2jNxMg0gdIgAD+inG7rKy83O/49HJAP4e/AZ/xiu277Z8frYjSRL8G2OEdzZuCKF+K5etx8eBQ+R99hQZD9nzuDzxsoHOrG6FeMjxC86UlMTgPHKLnGVaX6x6CsK7gNIGeR673Jj0BgYPeBKhv3UiyM7Xb3wAxZn5bTlY8AKZqVWsoA49bLpKEE/1Scxhu9WFCenrqv/oA6AFw5WwtD8NMO4rv+ux7j+WZWYVZjOIPaVOKnuokRC+NOszGTEDQKQkBdb0P6PdhZBou1kljNZ5DNpNP/ta30etcC/lBhs6j0r8ljSz1Fsb+YeMlzQEKbZ53rr8/0i9803OcN2JhaupH64wh5tiE2EvODTyGfdA4eZVkn9QQO8yRzOQkyGVJ3RdbIafldprikfH+wc24ClbHH+41F+zo5GwPZTxF9/D0LnfKccKs+gAA",
+    "width": 1280,
+    "height": 720
+  },
+  "proj-TARS1": {
+    "srcset": "/images/proj-TARS1-640w.webp 640w, /images/proj-TARS1-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRuoBAABXRUJQVlA4IN4BAABwCQCdASooACsAPrVIoEwnI6MiKrVdUOAWiWYAxQurCqDKCAA5cMsccf+We9Zq88V5qw6iSfPt43gS3Bc0kNCDLzjTa6GN6HtWOifVRCTK7Z5DecAA/vKk/f1ZRHnkKZNS0BSIZ9C+UDLmEE0Oy09+/JBchvapVNSu4oE+BNc36oBDBREucTpjn1TWp7HtZZKI7bz31p7htjku4uiFJ7+UGM8x2ojt0EJfM4bf7rBwWuwgG8wPX+3/Un6xWciKeqj3z/40/4ZyZMU5HZk8O1IyGZyeW0HMKOiv0x9W/3vX7Jbbng0dtyt95XnXhJZfKNIStkpZ2jQK+OjN9gnsL4aS8zd1MzEFmL9+X35NKxN0Osb1Ne/mTQp7k1w2O1Y3CI8sRNOlCr5VV9/59/IVA4/Ok111m1y8pjPVrEaeODx9tOo1MhejjqYzmSiUY++0PbhDtLbcohkmyfMWx83Da7y+n76AS+XsqV3YLVgHHA/iaIm7Ro5UGG6EvrP4Dz3vGLtnkV4tPQkQpdCW1n8BOYgwlEDiaATzlP5Fmx1mTV0kI8BvqEooaMTSoR8uVjTG+dpxsuXYvASTEM3VW56puNUpzvOQESIS1qtqZDB+VhiJpA1jcFvXuCPgQkAgAAAA",
+    "width": 1280,
+    "height": 720
+  },
+  "proj-TARS2": {
+    "srcset": "/images/proj-TARS2-640w.webp 640w, /images/proj-TARS2-1280w.webp 1280w",
+    "sizes": "(max-width: 768px) 640px, 1280px",
+    "placeholder": "data:image/webp;base64,UklGRqIBAABXRUJQVlA4IJYBAABwCQCdASooACoAPrVYoE2nJSKiJzgKSOAWiUAWdnHd8kZ83Zqmj/q4EzIGfeSwJ35y/Q7jCz+1dcv8uSGzwFBg6wYqG68jXZst928n/M8z8GO3BYAA/svA2d4VcRtO4Q557u1xC5K6w6G9/HbLNy3rQPYNtgQ3PBZsbZNO+wlbxbx3xpaIR/g2KH/9FriogAtfhAnrwfs2NdbR4YYpzyPS6UGNxaf413OJPPNsiGV6Psgj0itchPOL05vHcNdUZd4HGkSEZxuHW54nKt+WEo1G9p/FjCWupef6azcu1JAFb5+PgLGT+rtJ1cdMu60XvEZc/IOAodkUBtg7E2mHy2cFUWl0hFObMvHfLlzgqkL+HoE/2g+VvcNKMxvVDoX72sknqnGLSElJIUQxturMCOtwHJn4rUU7BsZFRRx4us3l3ztxVQHe6GbPE0qrb2xmoCICxKexmZlUXqz70yI86OZ4V4gVDea2i/ZdhrfumRtV0xD6517NBlpRffRyZoh+J4HwQ18Fzwx45+XhJhukqwXotwf2ugAA",
     "width": 1280,
     "height": 720
   },

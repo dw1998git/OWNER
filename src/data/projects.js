@@ -7,6 +7,9 @@ import projPalletizingUrl from '@/assets/proj-palletizing.png?url'
 import projWaterMeter from '@/assets/proj-water-meter.jpg?url'
 import projWeldingUrl from '@/assets/proj-welding.png?url'
 import projMagnaUrl from '@/assets/proj-magna.jpg?url'
+import projTars1Url from '@/assets/proj-TARS1.png?url'
+import projTars2Url from '@/assets/proj-TARS2.png?url'
+import projHandUrl from '@/assets/proj-hand.png?url'
 
 export const projects = [
   {
@@ -133,5 +136,38 @@ export const projects = [
       '应用光电/限位传感器实现碰撞防护。'
     ],
     tags: ['机械臂+传送带', 'PLC', 'MES对接', '120件/小时', '碰撞防护']
+  },
+  {
+    id: 10,
+    title: 'TARS 具身桌面机器人',
+    role: '个人项目',
+    date: '2025.06 - 至今',
+    image: projTars1Url,
+    imageKey: 'proj-TARS1',
+    imageAlt: projTars2Url,
+    imageKeyAlt: 'proj-TARS2',
+    link: 'https://gitee.com/ww-codegit/tars.git',
+    descriptions: [
+      '设计「感知—决策—行动」三层端云架构：端侧采集 IMU/触摸/视觉/语音，云端 LLM 通过 8 个 MCP 工具直接驱动机器人步态、姿态、表情与人格参数，形成完整具身闭环。',
+      '控制环上完成 3 舵机步态与标定/堵转保护，通过任务栈迁移与渲染条带优化提升内部 RAM 最大连续块。',
+      '重构多模态交互：触摸经独立高优先级任务实现 <1ms 表情反馈，并将触摸/传感器事件注入 LLM 上下文，实现 0.6s 内「被摸—打断—回应」的反射弧。',
+      '设计情感计算与表达系统：99 条双语情绪词典 + 否定翻转实现逐句情绪识别，驱动 32 套表情（25 组眼环弹簧插值、C++ 软渲染、动态降帧）与 7 类全身姿态动作，并支持对话修改人格参数。'
+    ],
+    tags: ['端云三层架构', '8个MCP工具', '多模态交互', '<1ms表情反馈', '99条情绪词典']
+  },
+  {
+    id: 11,
+    title: '绳驱灵巧手',
+    role: '个人项目',
+    date: '2026.09 - 至今',
+    image: projHandUrl,
+    imageKey: 'proj-hand',
+    descriptions: [
+      '基于绳驱仿生机械手硬件，完成 3D 打印结构优化、整机装配与传动调试，实现五指独立柔性运动。',
+      '基于 ESP32 开发底层舵机驱动，封装运动控制接口，实现手部姿态精准调度与顺滑动作序列播放。',
+      '集成视觉手势感知算法，完成人手姿态映射复刻，实现视觉-执行联动的基础交互能力。',
+      '搭建串口通信架构，预留 ROS2、大模型接入接口，支持上位机与智能体指令实时控制手部动作。'
+    ],
+    tags: ['绳驱仿生', 'ESP32', '视觉手势映射', '串口通信', 'ROS2接入预留']
   }
 ]

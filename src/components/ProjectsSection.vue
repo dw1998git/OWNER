@@ -2,13 +2,13 @@
   <section id="projects" class="section-padding">
     <div class="projects-header">
       <h2 class="section-headline reveal">项目经历</h2>
-      <p class="section-sub reveal reveal-delay-1">参与9+核心项目，覆盖汽车、高铁、新能源、智能制造等领域</p>
+      <p class="section-sub reveal reveal-delay-1">9 个公司项目与 2 个个人项目，覆盖汽车、高铁、新能源、智能制造与具身智能领域</p>
     </div>
     <ProjectCard
       v-for="project in projects"
       :key="project.id"
       :project="project"
-      :image-manifest="imageManifest ? imageManifest[project.imageKey] || null : null"
+      :image-manifest="imageManifest"
     />
   </section>
 </template>
@@ -17,7 +17,6 @@
 import { ref, onMounted } from 'vue'
 import { projects } from '../data/projects.js'
 import ProjectCard from './ProjectCard.vue'
-import { useProjectScroll } from '../composables/useProjectScroll.js'
 
 const imageManifest = ref(null)
 
@@ -31,17 +30,24 @@ onMounted(async () => {
     imageManifest.value = null
   }
 })
-
-useProjectScroll()
 </script>
 
 <style scoped>
 .section-padding {
-  padding: 96px 32px 0;
+  padding: 96px 32px 128px;
 }
 .projects-header {
   max-width: 980px;
   margin: 0 auto;
   padding-bottom: 64px;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-bottom: 80px;
+  }
+  .projects-header {
+    padding-bottom: 40px;
+  }
 }
 </style>
