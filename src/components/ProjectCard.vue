@@ -10,12 +10,11 @@
         class="project-frame"
       >
         <img
-          v-if="figure.manifest?.placeholder"
+          v-if="figure.manifest?.placeholder && !loaded[i]"
           :src="figure.manifest.placeholder"
           alt=""
           aria-hidden="true"
           class="project-image project-image--lqip"
-          :class="{ 'is-hidden': loaded[i] }"
         >
         <img
           v-if="figure.manifest"
@@ -121,38 +120,24 @@ const figures = computed(() => {
   margin-bottom: 0;
 }
 
-/* 展示图：不固定裁切比例，让图片完整显示 */
+/* 展示图：最简方式，不裁切、不强制比例 */
 .project-figure {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2px;
   background: var(--color-bg-section-alt);
-  align-items: start;
 }
 .project-figure.is-duo {
   grid-template-columns: 1fr 1fr;
 }
 .project-frame {
-  position: relative;
-  overflow: hidden;
   background: var(--color-bg-section-alt);
 }
 .project-image {
   display: block;
+  max-width: 100%;
   width: 100%;
   height: auto;
-  object-fit: contain;
-  transition: opacity 0.6s ease;
-}
-.project-image--lqip {
-  position: absolute;
-  inset: 0;
-  filter: blur(20px);
-  transform: scale(1.04);
-  pointer-events: none;
-}
-.project-image--lqip.is-hidden {
-  opacity: 0;
 }
 
 /* 文案区：居中、大标题、留白充足 */
