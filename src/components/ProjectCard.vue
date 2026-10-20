@@ -26,6 +26,7 @@
           decoding="async"
           class="project-image"
           @load="loaded[i] = true"
+          @click="openLightbox(figure.src)"
         >
         <img
           v-else-if="figure.src"
@@ -35,6 +36,7 @@
           decoding="async"
           class="project-image"
           @load="loaded[i] = true"
+          @click="openLightbox(figure.src)"
         >
       </div>
     </div>
@@ -70,11 +72,25 @@
         <span class="project-link__arrow" aria-hidden="true">&rsaquo;</span>
       </a>
     </div>
+
+    <Teleport to="body">
+      <div
+        v-if="lightboxSrc"
+        class="project-lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="查看项目大图"
+        @click="closeLightbox"
+      >
+        <img :src="lightboxSrc" :alt="project.title" class="project-lightbox__img">
+        <span class="project-lightbox__hint">点击任意处或按 Esc 关闭</span>
+      </div>
+    </Teleport>
   </article>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch, onUnmounted } from 'vue'
 
 const props = defineProps({
   project: {
@@ -88,6 +104,35 @@ const props = defineProps({
 })
 
 const loaded = ref([])
+
+const lightboxSrc = ref(null)
+
+const openLightbox = (src) => {
+  if (src) lightboxSrc.value = src
+}
+
+const closeLightbox = () => {
+  lightboxSrc.value = null
+}
+
+const onKeydown = (event) => {
+  if (event.key === 'Escape') closeLightbox()
+}
+
+watch(lightboxSrc, (value) => {
+  if (value) {
+    document.addEventListener('keydown', onKeydown)
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.removeEventListener('keydown', onKeydown)
+    document.body.style.overflow = ''
+  }
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
+})
 
 const figures = computed(() => {
   const entries = [
@@ -143,6 +188,43 @@ const figures = computed(() => {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  cursor: zoom-in;
+}
+
+/* 灯箱：点击后全屏浏览原图 */
+.project-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  cursor: zoom-out;
+  animation: lightbox-fade 0.2s ease;
+}
+.project-lightbox__img {
+  max-width: 94vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.5);
+}
+.project-lightbox__hint {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--text-sm);
+  pointer-events: none;
+}
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* 文案区：居中、大标题、留白充足 */
