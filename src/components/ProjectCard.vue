@@ -191,42 +191,6 @@ const figures = computed(() => {
   cursor: zoom-in;
 }
 
-/* 灯箱：点击后全屏浏览原图 */
-.project-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.92);
-  cursor: zoom-out;
-  animation: lightbox-fade 0.2s ease;
-}
-.project-lightbox__img {
-  max-width: 94vw;
-  max-height: 88vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.5);
-}
-.project-lightbox__hint {
-  position: absolute;
-  bottom: 24px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: var(--text-sm);
-  pointer-events: none;
-}
-@keyframes lightbox-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 /* 文案区：居中、大标题、留白充足 */
 .project-copy {
   padding: 56px 72px 64px;
