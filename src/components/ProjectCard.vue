@@ -120,7 +120,7 @@ const figures = computed(() => {
   margin-bottom: 0;
 }
 
-/* 展示图：最简方式，不裁切、不强制比例 */
+/* 展示图：统一 16:9，居中裁切；双图并排自动对齐 */
 .project-figure {
   display: grid;
   grid-template-columns: 1fr;
@@ -131,13 +131,18 @@ const figures = computed(() => {
   grid-template-columns: 1fr 1fr;
 }
 .project-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
   background: var(--color-bg-section-alt);
 }
 .project-image {
-  display: block;
-  max-width: 100%;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* 文案区：居中、大标题、留白充足 */
