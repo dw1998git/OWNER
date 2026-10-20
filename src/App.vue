@@ -2,6 +2,7 @@
   <RotatePrompt />
   <AuroraBackground />
   <AppNav />
+  <BackToTop />
   <main>
     <HeroSection />
     <HeroCtaBar />
@@ -18,6 +19,7 @@
 import RotatePrompt from './components/RotatePrompt.vue'
 import AuroraBackground from './components/AuroraBackground.vue'
 import AppNav from './components/AppNav.vue'
+import BackToTop from './components/BackToTop.vue'
 import HeroSection from './components/HeroSection.vue'
 import HeroCtaBar from './components/HeroCtaBar.vue'
 import WorkSection from './components/WorkSection.vue'
