@@ -2,7 +2,7 @@
   <section id="skills" class="section-alt">
     <div class="skills-inner">
       <h2 class="section-headline reveal float-in">个人技能</h2>
-      <p class="section-sub reveal reveal-delay-1">4年自动化领域机器人集成经验，掌握机器人、视觉、电气、上位机等技术能力</p>
+      <p class="section-sub reveal reveal-delay-1">4年工作经验，掌握具身智能、机器人系统集成、机器视觉、电气设计、上位机开发等技术能力</p>
       <div class="skills-content-area">
         <!-- 视频 -->
         <div class="video-wrap full-bleed reveal reveal-delay-2">

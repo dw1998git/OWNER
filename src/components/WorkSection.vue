@@ -26,10 +26,10 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import ReactLanyard from './lanyard/ReactLanyard.vue'
 
 const workItems = [
-  '1、负责工厂非标机器人、具身智能落地方案设计，搭建机器人+机器视觉+具身智能融合软硬件架构，完成设备智能化开发、调试与落地应用',
-  '2、负责PLC开发，伺服控制、HMI交互程序，电控算法、机器人运动控制、标定及精度调试，主导现场联调与工艺落地',
-  '3、集成六轴协作臂、Halcon 3D视觉及多类工业传感器，掌握2D/3D图像处理、相机标定、畸变校正、光源选型等技术，落地自动上下料、高精度检测、激光焊接智能工艺',
-  '4、基于 C/Python 开发上位机程序，对接 MES/ERP 搭建数据采集接口，依托 Cursor、Vibe Coding 等 AI 工具加速开发迭代'
+  '1、独立完成非标自动化设备电气方案设计，搭建软硬件系统架构',
+  '2、EPLAN电气原理图绘制、PLC与触摸屏程序开发及现场调试',
+  '3、集成工业机器人、机器视觉与传感器系统，实现自动化上下料、检测、焊接等工艺',
+  '4、参与MES/ERP系统对接，完成生产数据实时采集与信息化管理'
 ]
 
 const cardFaceImage = ref(null)
@@ -93,28 +93,33 @@ function generateCardFace() {
   ctx.font = '700 58px "SF Pro Display","Inter","Noto Sans SC",sans-serif'
   ctx.fillText('王 伟', 34, 76)
 
+  // 公司
+  ctx.fillStyle = '#dcdce4'
+  ctx.font = '500 22px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
+  ctx.fillText('长广溪智能制造（无锡）有限公司', 34, 148)
+
   // 职位
   ctx.fillStyle = '#30d5c8'
   ctx.font = '500 26px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
-  ctx.fillText('机器人应用开发工程师', 34, 154)
+  ctx.fillText('机器人应用工程师', 34, 184)
 
   // 日期
   ctx.fillStyle = '#86868b'
   ctx.font = '400 20px "SF Mono","JetBrains Mono",monospace'
-  ctx.fillText('2022.07 - 至今', 34, 194)
+  ctx.fillText('2022.06 - 至今', 34, 224)
 
   // 分割线
   ctx.strokeStyle = 'rgba(48,213,200,0.28)'
   ctx.lineWidth = 1
   ctx.beginPath()
-  ctx.moveTo(34, 234)
-  ctx.lineTo(W - 34, 234)
+  ctx.moveTo(34, 264)
+  ctx.lineTo(W - 34, 264)
   ctx.stroke()
 
   // 工作内容
   ctx.font = '400 19px "SF Pro Text","Inter","Noto Sans SC",sans-serif'
   const maxWidth = W - 104
-  let y = 262
+  let y = 292
 
   workItems.forEach(item => {
     ctx.fillStyle = '#30d5c8'

@@ -5,14 +5,18 @@
       <p class="section-sub reveal reveal-delay-1">开放合作机会，期待与您交流</p>
       <div class="contact-list">
         <div class="contact-item reveal reveal-delay-2">
+          <Briefcase :size="18" />
+          <span>求职意向：产品研发部门 - 机器人应用</span>
+        </div>
+        <div class="contact-item reveal reveal-delay-3">
           <Phone :size="18" />
           <span>15195285026</span>
         </div>
-        <div class="contact-item reveal reveal-delay-3">
+        <div class="contact-item reveal reveal-delay-4">
           <Mail :size="18" />
           <span>779625581@qq.com</span>
         </div>
-        <div class="contact-item reveal reveal-delay-4">
+        <div class="contact-item reveal reveal-delay-5">
           <MapPin :size="18" />
           <span>无锡, 江苏</span>
         </div>
@@ -22,7 +26,7 @@
 </template>
 
 <script setup>
-import { Phone, Mail, MapPin } from 'lucide-vue-next'
+import { Phone, Mail, MapPin, Briefcase } from 'lucide-vue-next'
 </script>
 
 <style scoped>
